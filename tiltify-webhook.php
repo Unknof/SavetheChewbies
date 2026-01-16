@@ -72,6 +72,55 @@ function read_json_file(string $path): array
     return is_array($decoded) ? $decoded : [];
 }
 
+function sanitize_log_string(mixed $value, int $maxLen = 500): ?string
+{
+    if (!is_string($value)) {
+        return null;
+    }
+
+    $s = trim($value);
+    if ($s === '') {
+        return null;
+    }
+
+    // Remove control characters (except tab/newline) to avoid log/admin rendering issues.
+    $s = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/u', '', $s);
+    if (!is_string($s) || $s === '') {
+        return null;
+    }
+
+    if (mb_strlen($s, 'UTF-8') > $maxLen) {
+        $s = mb_substr($s, 0, $maxLen, 'UTF-8');
+    }
+
+    return $s;
+}
+
+function nested_value(array $root, array $path): mixed
+{
+    $cur = $root;
+    foreach ($path as $k) {
+        if (!is_array($cur) || !array_key_exists($k, $cur)) {
+            return null;
+        }
+        $cur = $cur[$k];
+    }
+    return $cur;
+}
+
+function extract_first_string(array $root, array $paths, int $maxLen = 500): ?string
+{
+    foreach ($paths as $path) {
+        $v = is_array($path) ? nested_value($root, $path) : null;
+        $s = sanitize_log_string($v, $maxLen);
+        if ($s !== null) {
+            return $s;
+        }
+    }
+
+    return null;
+}
+
 function verify_tiltify_signature(string $signingKey, string $signatureB64, string $timestamp, string $rawBody): bool
 {
     // Timestamp should be recent (Tiltify suggests ~1 minute); allow some clock skew.
@@ -156,6 +205,24 @@ $isKnownRelay = isset($relays[$relayKeyId]) && is_array($relays[$relayKeyId]);
 $completedAt = $data['completed_at'] ?? null;
 $paymentStatus = (string)($data['payment_status'] ?? '');
 
+// Personal-data fields (optional; depends on Tiltify payload + donor choices).
+$donorName = extract_first_string($data, [
+    ['donor_name'],
+    ['donor_display_name'],
+    ['donor_username'],
+    ['donor', 'name'],
+    ['donor', 'display_name'],
+    ['donor', 'username'],
+], 120);
+
+$donorMessage = extract_first_string($data, [
+    ['donor_message'],
+    ['donor_comment'],
+    ['message'],
+    ['comment'],
+    ['donor', 'message'],
+], 800);
+
 $status = $relays[$relayKeyId]['status'] ?? 'pending';
 if (is_string($status) === false) {
     $status = 'pending';
@@ -188,6 +255,8 @@ $logEntry = [
         'amount' => $data['amount'] ?? null,
         'completed_at' => $data['completed_at'] ?? null,
         'payment_status' => $data['payment_status'] ?? null,
+        'donor_name' => $donorName,
+        'donor_message' => $donorMessage,
     ],
 ];
 file_put_contents($donationsLog, json_encode($logEntry, JSON_UNESCAPED_SLASHES) . "\n", FILE_APPEND | LOCK_EX);

@@ -140,10 +140,26 @@
         const listEl = document.getElementById('milestone-list');
         if (!statusEl || !listEl) return;
 
-        const items = Array.from(listEl.querySelectorAll('li[data-threshold][data-index]'));
-        if (items.length === 0) return;
+        function getItems() {
+          return Array.from(listEl.querySelectorAll('li[data-threshold][data-index]'));
+        }
 
-        function applyVisibility(total) {
+        function fmtCurrency(value, currency) {
+          try {
+            return new Intl.NumberFormat('de-DE', {
+              style: 'currency',
+              currency: currency || 'EUR',
+              maximumFractionDigits: 0,
+            }).format(value);
+          } catch {
+            return String(Math.round(value));
+          }
+        }
+
+        function applyVisibility(total, currency) {
+          const items = getItems();
+          if (items.length === 0) return;
+
           const thresholds = items
             .map((li) => ({
               li,
@@ -173,17 +189,55 @@
           }
 
           if (unlocked >= last) {
-            statusEl.textContent = `All milestones unlocked! Current total: €${Math.floor(total)}`;
+            statusEl.textContent = `All milestones unlocked! Current total: ${fmtCurrency(Math.floor(total), currency)}`;
           } else {
-            statusEl.textContent = `Current total: €${Math.floor(total)} • €${Math.ceil(remaining)} to next milestone`;
+            statusEl.textContent = `Current total: ${fmtCurrency(Math.floor(total), currency)} • ${fmtCurrency(Math.ceil(remaining), currency)} to next milestone`;
           }
         }
 
         function showAll() {
+          const items = getItems();
           for (const li of items) {
             li.style.display = '';
             li.classList.remove('milestone-locked');
             li.classList.remove('milestone-unlocked');
+          }
+        }
+
+        async function loadMilestonesFromTiltify() {
+          try {
+            const r = await fetch('./incentives.php', { cache: 'no-store' });
+            const data = await r.json();
+            if (!data || data.ok !== true || !Array.isArray(data.milestones) || data.milestones.length === 0) {
+              return;
+            }
+
+            const currency = typeof data.currency === 'string' ? data.currency : 'EUR';
+            const milestones = data.milestones
+              .map((m) => ({
+                name: typeof m.name === 'string' ? m.name : '',
+                description: typeof m.description === 'string' ? m.description : '',
+                amount: typeof m.amount === 'number' ? m.amount : Number(m.amount),
+              }))
+              .filter((m) => m.name && Number.isFinite(m.amount));
+
+            if (milestones.length === 0) return;
+
+            listEl.innerHTML = '';
+            milestones.forEach((m, i) => {
+              const li = document.createElement('li');
+              li.setAttribute('data-threshold', String(m.amount));
+              li.setAttribute('data-index', String(i + 1));
+
+              const strong = document.createElement('strong');
+              strong.textContent = `${fmtCurrency(m.amount, currency)} — ${m.name}: `;
+              li.appendChild(strong);
+
+              li.appendChild(document.createTextNode(m.description || ''));
+              listEl.appendChild(li);
+            });
+          } catch {
+            // Non-fatal; page has a fallback list.
           }
         }
 
@@ -196,15 +250,18 @@
               showAll();
               return;
             }
-            applyVisibility(data.total);
+            applyVisibility(data.total, typeof data.currency === 'string' ? data.currency : 'EUR');
           } catch {
             statusEl.textContent = 'Milestone total unavailable right now. Showing full list.';
             showAll();
           }
         }
 
-        refresh();
-        setInterval(refresh, 30000);
+        // Load milestone definitions once; then start total refresh loop.
+        loadMilestonesFromTiltify().finally(() => {
+          refresh();
+          setInterval(refresh, 30000);
+        });
       })();
     </script>
   </body>

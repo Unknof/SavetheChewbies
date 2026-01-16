@@ -292,7 +292,7 @@ Contact email for privacy requests: savethechewbies@protonmail.com
 Data collected (current behavior):
 - A short-lived cookie to remember your most recent verification code (so the Verify page can pre-fill it).
 - Server-side verification records keyed by a random relay code (pending/verified/cancelled + timestamps).
-- A minimal server log of webhook events for debugging/auditing (can be trimmed further if needed).
+- A minimal server log of webhook events for debugging/auditing. This may include donor display name and donation message if Tiltify sends it (and if the donor provided it).
 
 Retention: keep verification records/logs only as long as needed to operate and debug the verification flow.
 

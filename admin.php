@@ -224,6 +224,7 @@ header('Cache-Control: no-store');
                   <th style="text-align:left;padding:10px 8px;border-bottom:1px solid rgba(255,255,255,0.14);">payment_status</th>
                   <th style="text-align:left;padding:10px 8px;border-bottom:1px solid rgba(255,255,255,0.14);">amount</th>
                   <th style="text-align:left;padding:10px 8px;border-bottom:1px solid rgba(255,255,255,0.14);">donor_name</th>
+                  <th style="text-align:left;padding:10px 8px;border-bottom:1px solid rgba(255,255,255,0.14);">donor_message</th>
                 </tr>
               </thead>
               <tbody>
@@ -231,6 +232,12 @@ header('Cache-Control: no-store');
                     $don = isset($e['donation']) && is_array($e['donation']) ? $e['donation'] : [];
                     $relayId = isset($e['relay_key_id']) ? (string)$e['relay_key_id'] : '';
                     $filterLink = './admin.php?key=' . rawurlencode($providedKey) . '&relay=' . rawurlencode($relayId);
+
+                    $donorMessageRaw = (string)($don['donor_message'] ?? '');
+                    $donorMessagePreview = $donorMessageRaw;
+                    if (mb_strlen($donorMessagePreview, 'UTF-8') > 160) {
+                        $donorMessagePreview = mb_substr($donorMessagePreview, 0, 160, 'UTF-8') . '…';
+                    }
                 ?>
                   <tr>
                     <td style="padding:10px 8px;border-bottom:1px solid rgba(255,255,255,0.08);" class="note"><?php echo h((string)($e['received_at'] ?? '')); ?></td>
@@ -239,6 +246,7 @@ header('Cache-Control: no-store');
                     <td style="padding:10px 8px;border-bottom:1px solid rgba(255,255,255,0.08);" class="note"><?php echo h((string)($don['payment_status'] ?? '')); ?></td>
                     <td style="padding:10px 8px;border-bottom:1px solid rgba(255,255,255,0.08);" class="note"><?php echo h(is_array($don['amount'] ?? null) ? json_encode($don['amount'], JSON_UNESCAPED_SLASHES) : (string)($don['amount'] ?? '')); ?></td>
                     <td style="padding:10px 8px;border-bottom:1px solid rgba(255,255,255,0.08);" class="note"><?php echo h((string)($don['donor_name'] ?? '')); ?></td>
+                    <td style="padding:10px 8px;border-bottom:1px solid rgba(255,255,255,0.08);" class="note" title="<?php echo h($donorMessageRaw); ?>"><?php echo h($donorMessagePreview); ?></td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>

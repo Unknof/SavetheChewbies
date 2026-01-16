@@ -149,7 +149,7 @@
         const nextEl = document.getElementById('stc-next');
         if (!totalEl || !nextEl) return;
 
-        const milestones = [
+        let milestones = [
           { idx: 1, t: 351, name: 'Tantrum' },
           { idx: 2, t: 702, name: 'Playful sparring' },
           { idx: 3, t: 702, name: 'Ice caves' },
@@ -157,14 +157,20 @@
           { idx: 5, t: 1404, name: 'Mecha Baby Chew' },
         ];
 
-        const fmt = new Intl.NumberFormat('de-DE', {
-          style: 'currency',
-          currency: 'EUR',
-          maximumFractionDigits: 0,
-        });
+        function fmtCurrency(value, currency) {
+          try {
+            return new Intl.NumberFormat('de-DE', {
+              style: 'currency',
+              currency: currency || 'EUR',
+              maximumFractionDigits: 0,
+            }).format(value);
+          } catch {
+            return String(Math.round(value));
+          }
+        }
 
-        function render(total) {
-          totalEl.textContent = `${fmt.format(Math.floor(total))} raised`;
+        function render(total, currency) {
+          totalEl.textContent = `${fmtCurrency(Math.floor(total), currency)} raised`;
 
           const next = milestones.find((m) => total < m.t);
           if (!next) {
@@ -173,7 +179,31 @@
           }
 
           const remaining = Math.max(0, next.t - total);
-          nextEl.textContent = `${fmt.format(Math.ceil(remaining))} to next milestone: €${next.t} — ${next.name}`;
+          nextEl.textContent = `${fmtCurrency(Math.ceil(remaining), currency)} to next milestone: ${fmtCurrency(next.t, currency)} — ${next.name}`;
+        }
+
+        async function loadMilestonesFromTiltify() {
+          try {
+            const r = await fetch('./incentives.php', { cache: 'no-store' });
+            const data = await r.json();
+            if (!data || data.ok !== true || !Array.isArray(data.milestones) || data.milestones.length === 0) {
+              return;
+            }
+
+            const ms = data.milestones
+              .map((m, i) => ({
+                idx: i + 1,
+                t: typeof m.amount === 'number' ? m.amount : Number(m.amount),
+                name: typeof m.name === 'string' ? m.name : '',
+              }))
+              .filter((m) => Number.isFinite(m.t) && m.name);
+
+            if (ms.length > 0) {
+              milestones = ms;
+            }
+          } catch {
+            // Non-fatal.
+          }
         }
 
         async function refresh() {
@@ -185,15 +215,17 @@
               nextEl.textContent = 'Set tiltify_campaign_id (or milestone_total_override) to enable live totals.';
               return;
             }
-            render(data.total);
+            render(data.total, typeof data.currency === 'string' ? data.currency : 'EUR');
           } catch {
             totalEl.textContent = 'Total unavailable';
             nextEl.textContent = 'Could not load current total.';
           }
         }
 
-        refresh();
-        setInterval(refresh, 30000);
+        loadMilestonesFromTiltify().finally(() => {
+          refresh();
+          setInterval(refresh, 30000);
+        });
       })();
     </script>
   </body>
