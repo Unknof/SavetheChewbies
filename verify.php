@@ -136,6 +136,7 @@ function h(string $s): string
         <div class="footer-links">
           <a class="nav-link" href="./privacy.html">Privacy</a>
           <a class="nav-link" href="./privacy.html#contact">Contact</a>
+          <a class="nav-link" href="./acknowledgements.html">Acknowledgements</a>
         </div>
       </div>
     </footer>
