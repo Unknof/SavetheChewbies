@@ -18,14 +18,12 @@ return [
     // Donation form base URL, e.g.:
     // https://donate.tiltify.com/@yourusername/your-campaign-slug
     // or https://donate.tiltify.com/cause-slug
-    'tiltify_donation_url' => 'https://donate.tiltify.com/@username/campaign-slug',
+    'tiltify_donation_url' => 'https://donate.tiltify.com/@yourusername/your-campaign-slug',
 
     // Storage (file-based MVP)
     // This folder must be writable by PHP on your host.
     'data_dir' => __DIR__ . DIRECTORY_SEPARATOR . 'data',
 
-    // Admin page access
-    // Used by /admin.php?key=... to view recent webhook events.
-    // Generate something random and keep it private.
+    // For https://yourdomain.example/admin.php?key=...
     'admin_key' => 'CHANGE_ME_TO_A_RANDOM_SECRET',
 ];

@@ -88,7 +88,11 @@ function tail_jsonl(string $path, int $maxBytes = 262144, int $maxLines = 200): 
 }
 
 if (!is_array($config)) {
+  $exists = is_file($configFile);
+  if (!$exists) {
     text_response(500, 'Server not configured. Create config.php from config.example.php');
+  }
+  text_response(500, 'Invalid config.php (must return a PHP array). Common fix: ensure config.php contains a top-level return [ ... ]; like config.example.php.');
 }
 
 $adminKey = (string)($config['admin_key'] ?? '');

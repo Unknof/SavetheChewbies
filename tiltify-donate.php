@@ -18,7 +18,9 @@ if (!is_array($config)) {
     if (!$configExists) {
         echo "Server not configured. Create config.php from config.example.php";
     } else {
-        echo "Invalid config.php (must return a PHP array). Also check that PHP-FPM can read the file.";
+        $t = gettype($config);
+        echo "Invalid config.php (must return a PHP array). config.php currently returns type: {$t}. "
+            . "Common fix: ensure config.php contains a top-level `return [ ... ];` like config.example.php.";
     }
     exit;
 }
@@ -99,6 +101,59 @@ function http_post_json(string $url, array $body, array $headers): array
         'raw' => $resp,
         'json' => is_array($decoded) ? $decoded : null,
     ];
+}
+
+function extract_client_key_from_response(?array $json): string
+{
+    if (!is_array($json)) {
+        return '';
+    }
+
+    $candidates = [
+        $json['client_key'] ?? null,
+        $json['clientKey'] ?? null,
+        $json['data']['client_key'] ?? null,
+        $json['data']['clientKey'] ?? null,
+        $json['data']['attributes']['client_key'] ?? null,
+        $json['data']['attributes']['clientKey'] ?? null,
+        $json['webhook_relay_key']['client_key'] ?? null,
+        $json['webhook_relay_key']['clientKey'] ?? null,
+        $json['webhook_relay_key']['attributes']['client_key'] ?? null,
+        $json['webhook_relay_key']['attributes']['clientKey'] ?? null,
+    ];
+
+    foreach ($candidates as $v) {
+        if (is_string($v) && $v !== '') {
+            return $v;
+        }
+    }
+
+    return '';
+}
+
+function summarize_json_shape(?array $json): string
+{
+    if (!is_array($json)) {
+        return 'non-JSON or non-object response';
+    }
+
+    $topKeys = array_keys($json);
+    sort($topKeys);
+    $summary = 'top-level keys: ' . implode(', ', array_slice($topKeys, 0, 20));
+    if (count($topKeys) > 20) {
+        $summary .= ', ...';
+    }
+
+    if (isset($json['data']) && is_array($json['data'])) {
+        $dataKeys = array_keys($json['data']);
+        sort($dataKeys);
+        $summary .= ' | data keys: ' . implode(', ', array_slice($dataKeys, 0, 20));
+        if (count($dataKeys) > 20) {
+            $summary .= ', ...';
+        }
+    }
+
+    return $summary;
 }
 
 function tiltify_access_token(array $config): string
@@ -212,9 +267,9 @@ try {
         throw new RuntimeException('Failed to create relay key: HTTP ' . $resp['status'] . ' ' . $resp['raw']);
     }
 
-    $clientKey = (string)($resp['json']['client_key'] ?? '');
+    $clientKey = extract_client_key_from_response($resp['json']);
     if ($clientKey === '') {
-        throw new RuntimeException('Missing client_key in response');
+        throw new RuntimeException('Missing client_key in response (' . summarize_json_shape($resp['json']) . ')');
     }
 
     // Store relay status locally.
