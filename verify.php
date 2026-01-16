@@ -68,6 +68,8 @@ function h(string $s): string
         <nav class="nav" aria-label="Primary">
           <a class="nav-link" href="./index.html">Home</a>
           <a class="nav-link" href="./donate.html">Donate</a>
+          <a class="nav-link" href="./privacy.html">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact">Contact</a>
         </nav>
       </div>
     </header>
@@ -124,5 +126,22 @@ function h(string $s): string
         </p>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="footer-title">Save The Chewbies</div>
+          <div class="footer-sub">© <span id="year"></span></div>
+        </div>
+        <div class="footer-links">
+          <a class="nav-link" href="./privacy.html">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

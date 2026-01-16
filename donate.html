@@ -23,8 +23,9 @@
 
         <nav class="nav" aria-label="Primary">
           <a class="nav-link" href="./index.html">Home</a>
-          <a class="nav-link" href="./charities.html">Charity</a>
           <a class="nav-link nav-cta" href="./donate.html" aria-current="page">Donate</a>
+          <a class="nav-link" href="./privacy.html">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact">Contact</a>
         </nav>
       </div>
     </header>
@@ -110,23 +111,9 @@
       </section>
 
       <section class="card" id="privacy">
-        <h2>Privacy</h2>
+        <h2>Privacy & contact</h2>
         <p>
-          If we display a donor feed, we should make it opt-in (display name) and keep personal data minimal.
-          A basic privacy policy and data retention notes should be added before launch.
-        </p>
-        <p class="note">
-          Contact: <a href="mailto:savethechewbies@protonmail.com">savethechewbies@protonmail.com</a>
-        </p>
-        <p class="note">
-          This site stores a short-lived cookie to pre-fill your verification code, and stores verification status server-side so the code can be marked verified.
-        </p>
-      </section>
-
-      <section class="card" id="contact">
-        <h2>Contact</h2>
-        <p>
-          Email: <a href="mailto:savethechewbies@protonmail.com">savethechewbies@protonmail.com</a>
+          See <a href="./privacy.html">Privacy</a> for data-retention notes and <a href="./privacy.html#contact">Contact</a>.
         </p>
       </section>
 
@@ -139,7 +126,8 @@
           <div class="footer-sub">© <span id="year"></span></div>
         </div>
         <div class="footer-links">
-          <a class="nav-link" href="./donate.html#privacy">Privacy</a>
+          <a class="nav-link" href="./privacy.html">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact">Contact</a>
         </div>
       </div>
     </footer>
@@ -174,6 +162,9 @@
           const next = Math.min(unlocked + 1, thresholds.length);
           const last = thresholds.length;
 
+          const nextMilestone = thresholds.find((m) => m.idx === next);
+          const remaining = nextMilestone ? Math.max(0, nextMilestone.t - total) : 0;
+
           for (const m of thresholds) {
             const shouldShow = (m.idx <= unlocked) || (m.idx === next) || (m.idx === last);
             m.li.style.display = shouldShow ? '' : 'none';
@@ -184,22 +175,36 @@
           if (unlocked >= last) {
             statusEl.textContent = `All milestones unlocked! Current total: €${Math.floor(total)}`;
           } else {
-            statusEl.textContent = `Current total: €${Math.floor(total)} • Unlocked: ${unlocked}/${last}`;
+            statusEl.textContent = `Current total: €${Math.floor(total)} • €${Math.ceil(remaining)} to next milestone`;
           }
         }
 
-        fetch('./milestones.php', { cache: 'no-store' })
-          .then((r) => r.json())
-          .then((data) => {
+        function showAll() {
+          for (const li of items) {
+            li.style.display = '';
+            li.classList.remove('milestone-locked');
+            li.classList.remove('milestone-unlocked');
+          }
+        }
+
+        async function refresh() {
+          try {
+            const r = await fetch('./milestones.php', { cache: 'no-store' });
+            const data = await r.json();
             if (!data || data.ok !== true || typeof data.total !== 'number') {
               statusEl.textContent = 'Milestone total unavailable right now. Showing full list.';
+              showAll();
               return;
             }
             applyVisibility(data.total);
-          })
-          .catch(() => {
+          } catch {
             statusEl.textContent = 'Milestone total unavailable right now. Showing full list.';
-          });
+            showAll();
+          }
+        }
+
+        refresh();
+        setInterval(refresh, 30000);
       })();
     </script>
   </body>

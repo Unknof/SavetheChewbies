@@ -17,10 +17,12 @@ python -m http.server 8080
 
 Then open `http://localhost:8080`.
 
-## Where to put GIFs
+## Live total (milestones)
 
-- Put your GIF files in `assets/gifs/`
-- Update `index.html` to point to your filenames
+The homepage and Donate page can show a live raised total by calling `milestones.php`.
+
+- Set `tiltify_campaign_id` in `config.php` (see `config.example.php`), or
+- For testing, set `milestone_total_override` in `config.php`.
 
 ## Deployment (high level)
 

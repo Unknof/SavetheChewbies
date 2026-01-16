@@ -121,7 +121,7 @@ Upload **everything** from this repo into the web root:
 
 Important notes:
 - Upload the `assets/` folder exactly as-is, keeping its structure.
-- GIFs should be transferred in **Binary/Auto** mode (most clients default to Auto).
+- Images should be transferred in **Binary/Auto** mode (most clients default to Auto).
 
 ### Verify it worked
 
@@ -146,7 +146,7 @@ curl.exe -I http://YOUR_DOMAIN.com/
 - **Only `www` works but the naked domain doesn’t (or vice-versa):** you need both DNS records and the server vhost configured for both.
 - **HTTPS shows a certificate error:** Let’s Encrypt isn’t configured for this domain yet (see next section).
 - **403 Forbidden:** permissions or wrong folder; confirm you uploaded into the web root and that files are readable.
-- **Images/CSS not loading:** confirm `assets/styles.css` and `assets/gifs/...` exist on the server and the folder names match exactly.
+- **Images/CSS not loading:** confirm `assets/styles.css` and any referenced image files exist on the server and the folder names match exactly.
 
 If you paste the **top-level folder list** you see after logging in via FTP, I can tell you which one is almost certainly the web root.
 

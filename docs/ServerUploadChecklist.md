@@ -29,7 +29,7 @@ Upload to: `/var/www/savethechew`
 
 - HTML pages: `index.html`, `donate.html`, `charities.html`
 - PHP endpoints: `tiltify-donate.php`, `tiltify-webhook.php`, `verify.php`, `index.php`
-- Static assets folder: `assets/` (including `assets/styles.css` and any GIFs)
+- Static assets folder: `assets/` (including `assets/styles.css` and any images)
 
 ### Optional uploads
 

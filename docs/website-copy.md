@@ -282,11 +282,10 @@ Most control, best tracking, but it means you become the payment receiver and mu
 
 ---
 
-## Privacy (donate.html#privacy)
+## Privacy (privacy.html)
 
-### Privacy section (draft)
-If we display a donor feed, we should make it opt-in (display name) and keep personal data minimal.
-A basic privacy policy and data retention notes should be added before launch.
+### Privacy section
+We keep personal data minimal and only store what’s needed to run donation verification.
 
 Contact email for privacy requests: savethechewbies@protonmail.com
 
@@ -299,9 +298,10 @@ Retention: keep verification records/logs only as long as needed to operate and 
 
 Deletion requests: email the address above with your verification code and I can remove the related server-side record.
 
+
 ---
 
-## Contact (donate.html#contact)
+## Contact (privacy.html#contact)
 
 ### Contact section
 Email: savethechewbies@protonmail.com

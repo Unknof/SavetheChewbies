@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy & Contact • Save The Chewbies</title>
+    <meta name="description" content="Privacy notes and contact information for Save The Chewbies." />
+
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">STC</div>
+          <div class="brand-text">
+            <div class="brand-name">Save The Chewbies</div>
+            <div class="brand-tagline">Privacy & contact</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a class="nav-link" href="./index.html">Home</a>
+          <a class="nav-link" href="./donate.html">Donate</a>
+          <a class="nav-link" href="./privacy.html" aria-current="page">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="container">
+      <section class="page-header">
+        <h1>Privacy & contact</h1>
+        <p class="lead">This is an early version. These notes will be refined as the project grows.</p>
+      </section>
+
+      <section class="card" id="privacy">
+        <h2>Privacy</h2>
+        <p>
+          This site is built to verify donations without screenshots. We try to keep personal data minimal.
+        </p>
+        <h3 style="margin:18px 0 8px;">What we store</h3>
+        <ul class="list">
+          <li><strong>Verification code cookie:</strong> A short-lived cookie is stored to remember your most recent verification code so the Verify page can pre-fill it.</li>
+          <li><strong>Verification status:</strong> Server-side status for that code (pending/verified/cancelled + timestamps).</li>
+          <li><strong>Webhook audit log:</strong> A minimal log of webhook events for debugging/auditing.</li>
+        </ul>
+        <p class="note">We don’t handle payment information. Donations happen on Tiltify.</p>
+
+        <h3 style="margin:18px 0 8px;">Retention</h3>
+        <p>
+          Verification records/logs are kept only as long as needed to operate and debug the verification flow.
+        </p>
+
+        <h3 style="margin:18px 0 8px;">Deletion requests</h3>
+        <p>
+          Email the address below with your verification code and we can remove the related server-side record.
+        </p>
+      </section>
+
+      <section class="card" id="contact">
+        <h2>Contact</h2>
+        <p>
+          Email: <a href="mailto:savethechewbies@protonmail.com">savethechewbies@protonmail.com</a>
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="footer-title">Save The Chewbies</div>
+          <div class="footer-sub">© <span id="year"></span></div>
+        </div>
+        <div class="footer-links">
+          <a class="nav-link" href="./privacy.html">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
