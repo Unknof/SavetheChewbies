@@ -13,6 +13,19 @@
       "problemMatcher": []
     },
     {
+      "label": "Copy: Website text (print)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Get-Content -Path '${workspaceFolder}\\docs\\website-copy.md'"
+      ],
+      "problemMatcher": []
+    },
+    {
       "label": "Checklist: Server upload (print)",
       "type": "shell",
       "command": "powershell",

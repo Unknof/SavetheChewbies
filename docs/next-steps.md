@@ -30,6 +30,11 @@ Goal: users click Donate on your site, get redirected to a trusted donation prov
    - Totals only, or totals + recent donations
    - If showing donor names, confirm it’s allowed and document it
 
+7. Add incentives (your next big feature)
+   - Create 5 incentives on the Tiltify campaign (names + dollar values)
+   - Decide: milestones (campaign total) vs donor rewards (per-donor)
+   - Mirror incentives on this site (and keep them in sync with Tiltify)
+
 ## Docs
 
 - See `docs/tiltify-relay-setup.md` for the detailed setup.

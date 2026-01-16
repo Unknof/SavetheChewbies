@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Save The Chewbies</title>
-    <meta name="description" content="A simple charity hub to help save children by donating to vetted organizations." />
+    <meta name="description" content="Donate to Save the Children via Tiltify, with donation incentives that update live." />
 
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
@@ -17,13 +17,13 @@
           <div class="brand-mark" aria-hidden="true">STC</div>
           <div class="brand-text">
             <div class="brand-name">Save The Chewbies</div>
-            <div class="brand-tagline">Donate to vetted charities helping children</div>
+            <div class="brand-tagline">Donate to Save the Children (with fun incentives)</div>
           </div>
         </div>
 
         <nav class="nav" aria-label="Primary">
           <a class="nav-link" href="./index.html" aria-current="page">Home</a>
-          <a class="nav-link" href="./charities.html">Charities</a>
+          <a class="nav-link" href="./charities.html">Charity</a>
           <a class="nav-link nav-cta" href="./donate.html">Donate</a>
         </nav>
       </div>
@@ -34,39 +34,36 @@
         <div class="hero-copy">
           <h1>Make your donation count.</h1>
           <p class="lead">
-            This site is a simple hub that points you to specific charities focused on helping children.
-            Over time we’ll add a transparent way to verify donations (without relying on easily faked receipts).
+            This site is a simple hub to help you donate to <strong>Save the Children</strong>.
+            Donations run through <strong>Tiltify</strong>, so we can verify them via webhook events instead of relying on screenshots.
           </p>
           <div class="actions">
-            <a class="button" href="./charities.html">View charities</a>
+            <a class="button" href="./donate.html">Donate now</a>
+            <a class="button button-secondary" href="./charities.html">About the charity</a>
             <a class="button button-secondary" href="./donate.html">How donating works</a>
           </div>
-          <p class="note">
-            Note: This is an early setup version. Content and artwork will be refined.
-          </p>
         </div>
 
-        <div class="hero-media" aria-label="Featured GIFs">
-          <div class="media-grid">
-            <figure class="media-card">
-              <img src="./assets/gifs/placeholder.gif" alt="Placeholder animated gif" loading="lazy" />
-              <figcaption>Drop your first GIF into <span class="mono">assets/gifs/</span></figcaption>
-            </figure>
-            <figure class="media-card">
-              <img src="./assets/gifs/placeholder.gif" alt="Placeholder animated gif" loading="lazy" />
-              <figcaption>Then replace this second one</figcaption>
-            </figure>
-          </div>
+        <div class="hero-media" aria-label="How it works">
+          <h2 style="margin:0 0 10px;font-size:1.1rem;">How it works</h2>
+          <ol class="list" style="margin:0;padding-left:18px;">
+            <li>Click <strong>Start verified donation</strong>.</li>
+            <li>Donate on Tiltify to <strong>Save the Children</strong>.</li>
+            <li>Return here to check your <strong>verification code</strong>.</li>
+          </ol>
+          <p class="note" style="margin:10px 0 0;">
+            This site does not handle payment information.
+          </p>
         </div>
       </section>
 
       <section class="grid">
         <article class="card">
-          <h2>Vetted charities</h2>
+          <h2>Save the Children</h2>
           <p>
-            Keep a curated list of organizations you trust. Each charity gets a short “why” and a donate link.
+            A well-known charity with a long track record. This drive is focused on Save the Children.
           </p>
-          <a class="text-link" href="./charities.html">Go to charities →</a>
+          <a class="text-link" href="./charities.html">Learn more →</a>
         </article>
 
         <article class="card">
@@ -79,9 +76,10 @@
         </article>
 
         <article class="card">
-          <h2>Transparency</h2>
+          <h2>Incentives</h2>
           <p>
-            We can publish totals by charity and a donor feed (opt-in display names), plus exportable reports.
+            We’re building five donation incentives tied to the Baby Chew in-game pet.
+            They’ll be shown on Tiltify and mirrored here.
           </p>
         </article>
       </section>
@@ -95,7 +93,6 @@
         </div>
         <div class="footer-links">
           <a class="nav-link" href="./donate.html#privacy">Privacy</a>
-          <a class="nav-link" href="./donate.html#contact">Contact</a>
         </div>
       </div>
     </footer>
