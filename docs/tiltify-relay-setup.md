@@ -91,12 +91,28 @@ In the Tiltify dashboard for your webhook endpoint:
 
 Your endpoint must return HTTP 200-299 or it will eventually deactivate.
 
+### See whether the server received it
+
+Open the admin panel (requires your admin key from `config.php`):
+
+- `https://savethechew.biz/admin.php?key=<your_admin_key>`
+
+Look under **Recent webhook events**. Even if the test message uses an unknown `relay_key_id`, the server will still log it so you can confirm your endpoint is reachable and signature verification passes.
+
 ## Step 5: Use it on your site
 
 - Start: `https://savethechew.biz/tiltify-donate.php?charity=default`
 - Check status: `https://savethechew.biz/verify.php?code=<code>`
 
 Tip: after starting a verified donation, the site stores your verification code in a short-lived cookie so the Verify page can auto-fill it (you can still copy/paste it manually if needed).
+
+### End-to-end verification test (real flow)
+
+1. Click **Start verified donation** on `donate.html`.
+2. You’ll be redirected to Tiltify’s donation form.
+3. Complete a small test donation.
+4. Open `verify.php` — it should show your code as `pending` at first, then switch to `verified` after Tiltify sends the webhook.
+5. In the admin panel, filter by your code (relay key id) to see the exact webhook event(s) the server logged.
 
 ## Security notes
 

@@ -102,7 +102,7 @@ If you accidentally cloned into a subfolder but want the files at the web root, 
 
 ```bash
 sudo rm -rf /root/deploy_tmp/SavetheChewbies
-sudo git clone <YOUR_REPO_URL> /root/deploy_tmp/SavetheChewbies
+sudo git clone https://github.com/Unknof/SavetheChewbies /root/deploy_tmp/SavetheChewbies
 
 sudo rsync -av --delete \
    --exclude 'data/' \

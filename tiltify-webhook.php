@@ -150,11 +150,8 @@ $relaysPath = $dataDir . DIRECTORY_SEPARATOR . 'relays.json';
 $donationsLog = $dataDir . DIRECTORY_SEPARATOR . 'donations.jsonl';
 
 $relays = read_json_file($relaysPath);
-if (!isset($relays[$relayKeyId]) || !is_array($relays[$relayKeyId])) {
-    // Unknown relay key; still accept the webhook to avoid deactivation.
-    http_response_code(200);
-    exit;
-}
+
+$isKnownRelay = isset($relays[$relayKeyId]) && is_array($relays[$relayKeyId]);
 
 $completedAt = $data['completed_at'] ?? null;
 $paymentStatus = (string)($data['payment_status'] ?? '');
@@ -182,6 +179,7 @@ $relays[$relayKeyId]['last_event_at'] = (string)($meta['attempted_at'] ?? gmdate
 $logEntry = [
     'received_at' => gmdate('c'),
     'relay_key_id' => $relayKeyId,
+    'known_relay' => $isKnownRelay,
     'event_type' => $eventType,
     'donation' => [
         'id' => $data['id'] ?? null,
@@ -194,6 +192,12 @@ $logEntry = [
     ],
 ];
 file_put_contents($donationsLog, json_encode($logEntry, JSON_UNESCAPED_SLASHES) . "\n", FILE_APPEND | LOCK_EX);
+
+if (!$isKnownRelay) {
+    // Unknown relay key; accept but do not update relay status.
+    http_response_code(200);
+    exit;
+}
 
 write_json_file_atomic($relaysPath, $relays);
 
