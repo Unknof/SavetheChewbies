@@ -1,0 +1,19 @@
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# Editor
+.vscode/*
+!.vscode/tasks.json
+
+# Runtime secrets
+config.php
+
+# Private notes (keep local only)
+docs/server-info.private.md
+
+# Runtime data (webhook logs, relay status, token cache)
+data/
