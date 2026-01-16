@@ -187,6 +187,14 @@ main {
   font-size: 0.95rem;
 }
 
+.milestone-locked {
+  opacity: 0.72;
+}
+
+.milestone-unlocked {
+  opacity: 1;
+}
+
 .actions {
   display: flex;
   gap: 10px;

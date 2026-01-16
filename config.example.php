@@ -20,6 +20,14 @@ return [
     // or https://donate.tiltify.com/cause-slug
     'tiltify_donation_url' => 'https://donate.tiltify.com/@yourusername/your-campaign-slug',
 
+    // Optional: campaign id for reading the current total (used by /milestones.php)
+    // Find this in Tiltify (campaign details / API) or via your Tiltify dashboard.
+    'tiltify_campaign_id' => 'YOUR_TILTIFY_CAMPAIGN_ID',
+
+    // Optional: override the current total for testing milestone reveal without the API.
+    // Example: 0, 351, 702, 1053, 1404
+    'milestone_total_override' => null,
+
     // Storage (file-based MVP)
     // This folder must be writable by PHP on your host.
     'data_dir' => __DIR__ . DIRECTORY_SEPARATOR . 'data',

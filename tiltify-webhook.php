@@ -186,7 +186,6 @@ $logEntry = [
         'campaign_id' => $data['campaign_id'] ?? null,
         'cause_id' => $data['cause_id'] ?? null,
         'amount' => $data['amount'] ?? null,
-        'donor_name' => $data['donor_name'] ?? null,
         'completed_at' => $data['completed_at'] ?? null,
         'payment_status' => $data['payment_status'] ?? null,
     ],

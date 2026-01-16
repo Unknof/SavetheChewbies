@@ -64,8 +64,7 @@ Save the Children is the charity chosen for this project because:
 
 My goal is for donations to go to Save the Children (not to me).
 
-Tiltify typically advertises **no platform fee**, but payment processors may still apply standard processing fees depending on payment method and region.
-I’m verifying the exact breakdown for this campaign and will link it here once confirmed.
+Tiltify does not take a platform fee. The only fees involved are standard payment processing fees (varies by payment method and region).
 
 ### Receipts / taxes (wording to use)
 
@@ -82,9 +81,7 @@ Please treat this as “best effort info” and rely on the receipt and local gu
 **Body (draft):**
 Donate to Save the Children and help unlock five community incentives tied to the Baby Chew pet.
 
-**Link text (pick one):**
-- View incentives →
-- See milestones →
+**Link text:** See milestones → (links to `donate.html#incentives`)
 
 ### Section: Vetted charities (card)
 **Heading:** Vetted charities
@@ -108,34 +105,32 @@ Best option at small scale: use a donation platform that provides an API/webhook
 **Body (draft):**
 We can publish totals by charity and a donor feed (opt-in display names), plus exportable reports.
 
-### Featured GIF captions (replace placeholders)
-- Drop your first GIF into `assets/gifs/`
-- Then replace this second one
+### Section: Dev streams (card)
+**Heading:** Dev streams
 
-TODO:
-- Provide final GIF captions that match your theme/jokes/mood.
+**Body (draft):**
+I’ll be streaming the implementation of these incentives (Discord, and bilibili if possible).
+If at least one community milestone gets met, I’ll post the stream links + schedule on the site.
+
+**Schedule note:**
+Exact stream times will be posted on the website.
 
 ---
 
 ## Charities page (charities.html)
 
 ### Page intro (lead)
-Replace these with the organizations you trust. Each entry can link to a verified donation platform page.
+This project is currently focused on a single charity: **Save the Children**.
 
-### Charity listing template (copy block)
-Use this as the text template for each charity card.
+### Charity listing (current)
 
-**Charity name:** {NAME}
+**Charity name:** Save the Children
 
 **Short description:**
-{WHAT THEY DO. WHY YOU TRUST THEM. IMPACT OF A DONATION.}
-
-**Focus:** {Children / health / education / protection / etc}
-
-**Region:** {Global / US / EU / etc}
+A well-known charity with a long track record supporting children worldwide.
 
 **Buttons:**
-- Donate via platform
+- Donate via Tiltify (this site)
 - Official site
 
 ### “What verified means here” callout
@@ -147,8 +142,9 @@ For GDQ-style verification, we need donations to happen on a platform that can n
 **Note (optional):**
 If you want, I can wire this to a specific platform once you pick one.
 
-TODO:
-- List your real charities (name + why + links).
+
+Links:
+- Official site: https://www.savethechildren.org/
 
 ---
 
@@ -198,19 +194,63 @@ Setup guide: `docs/tiltify-relay-setup.md`
 Goal: create **five** incentives that:
 - exist on the Tiltify campaign (so donors see them while donating)
 - are also shown on this website
-- stay in sync (same names, same dollar amounts, same status)
+- stay in sync (same names, same amounts, same status)
+
+These are **campaign milestones** (community unlocks). No personal donor rewards.
+
+Milestones unlock **in order** (1 unlocks 2, 2 unlocks 3, etc). On the website we can keep things a little “mystery/teaser”:
+- show all already-unlocked milestones
+- always show the *next* milestone
+- always show the *final* milestone (Mecha Baby Chew) as a teaser
 
 ### Incentive list (draft; fill in amounts + names)
 
 Use this table as the single source-of-truth for what we’re building.
 
-| # | Incentive name | Amount (USD) | What it unlocks (Baby Chew / Project B) | Status |
+| # | Incentive name | Amount (EUR) | What it unlocks (Baby Chew / Project B) | Status |
 |---|---|---:|---|---|
-| 1 | (TBD) | (TBD) | (TBD) | Planned |
-| 2 | (TBD) | (TBD) | (TBD) | Planned |
-| 3 | (TBD) | (TBD) | (TBD) | Planned |
-| 4 | (TBD) | (TBD) | (TBD) | Planned |
-| 5 | (TBD) | (TBD) | (TBD) | Planned |
+| 1 | Tantrum (knockback reaction) | €351 | When Baby Chew gets knocked back, the baby chewbies throw a little tantrum (harmless / cosmetic). Est: 1–2 hours. | Planned |
+| 2 | Playful sparring | €702 | Baby chewbies can have small harmless fights with baby chewbies from other players. Est: 3–4 hours. | Planned |
+| 3 | Ice caves (building) | €702 | Baby Chew occasionally builds ice caves. Ice caves produce more baby chewbies on their own. Est: 4–5 hours. | Planned |
+| 4 | Nydus teleport (fashionable) | €1053 | Baby Chew + the baby chewbies can teleport to the current hero in a more “fashionable” way: they use the Nydus like Chew does. Est: 5–6 hours. | Planned |
+| 5 | Mecha Baby Chew (skin) | €1404 | Add a Mecha Baby Chew skin (similar to an existing Chew skin, but not available for Baby Chew yet). Est: 10–12 hours. | Planned |
+
+**Currency note:** I’m based in Germany, so the target amounts are written in **euros**. If the donation platform requires a different currency (like USD), I’ll set the closest equivalent amounts there.
+
+### Why €351?
+
+€351 comes directly from a Kerrigan Survival tournament we ran on **January 10–11**.
+During that event (where players from all over the world competed to be the best Kerrigan Survival player), I revealed Baby Chew to the player base — and across the event, players spawned a total of **351** baby chewbies.
+
+So €351 became the “signature number” for this charity drive.
+
+**Proof screenshots (tournament):**
+
+![Game 1 proof screenshot](../assets/chewbieCountProof/Game1.jpg)
+
+![Game 10 proof screenshot](../assets/chewbieCountProof/Game10.jpg)
+
+### Creator pledge (proof of concept)
+
+In addition to the five community incentives above, I’m also doing a personal pledge:
+
+- I will donate **€10 for every Baby Chew that was used in the tournament**.
+- In the tournament, Baby Chew was used **6** times.
+- That means I will donate **€60**.
+
+This is a creator-only goal (not something the community has to unlock), and I’ll use it as a proof of concept to make sure the donation + verification flow works end-to-end.
+
+### Short descriptions (for Tiltify + website)
+
+1) **Tantrum (knockback reaction):** If Baby Chew gets knocked back, the baby chewbies throw a little tantrum. Purely for fun/cuteness; no gameplay impact intended.
+
+2) **Playful sparring:** Baby chewbies can start tiny, harmless “fights” with other players’ baby chewbies.
+
+3) **Ice caves (build process):** Baby Chew occasionally builds ice caves. Aim for a nice little “construction” animation and process.
+
+4) **Nydus teleport (fashionable):** Baby Chew and the baby chewbies teleport to the current hero using the Nydus (like Chew does).
+
+5) **Mecha Baby Chew (skin):** Add a Mecha Baby Chew skin (existing for Chew, but not for Baby Chew yet).
 
 ### How incentives stay updated (implementation note)
 There are two viable ways to keep Tiltify + the website consistent:
@@ -226,18 +266,7 @@ There are two viable ways to keep Tiltify + the website consistent:
 	- Result: best for automation, but requires careful API permissions.
 
 TODO:
-- Confirm whether your five incentives are **milestones** (campaign total unlocks) or **donor rewards** (individual donation amount unlocks).
 - Decide the source of truth (Tiltify-first vs repo-first).
-
-### Section: Embed (optional)
-**Heading:** Embed (optional)
-
-**Body:**
-Some platforms provide an embed snippet (script or iframe) for a campaign.
-If embedding is blocked by the platform, the reliable fallback is always linking out.
-
-**Placeholder note:**
-When you have an embed snippet: paste it here. (We’ll replace this placeholder block with the platform-provided code.)
 
 ### Section: Options (A/B/C cards)
 **Option A: Direct to charity sites**
@@ -259,22 +288,23 @@ Most control, best tracking, but it means you become the payment receiver and mu
 If we display a donor feed, we should make it opt-in (display name) and keep personal data minimal.
 A basic privacy policy and data retention notes should be added before launch.
 
-TODO (fill these in before launch):
-- Contact email for privacy requests
-- Data collected (verification code, donation event fields, IP logs if any)
-- Retention period
-- How to request deletion
+Contact email for privacy requests: savethechewbies@protonmail.com
+
+Data collected (current behavior):
+- A short-lived cookie to remember your most recent verification code (so the Verify page can pre-fill it).
+- Server-side verification records keyed by a random relay code (pending/verified/cancelled + timestamps).
+- A minimal server log of webhook events for debugging/auditing (can be trimmed further if needed).
+
+Retention: keep verification records/logs only as long as needed to operate and debug the verification flow.
+
+Deletion requests: email the address above with your verification code and I can remove the related server-side record.
 
 ---
 
 ## Contact (donate.html#contact)
 
-### Contact section (draft)
-Add an email address or contact form later. For now you can put a simple email link here.
-
-TODO:
-- Preferred contact email address
-- Whether you want a Discord/Twitter link here
+### Contact section
+Email: savethechewbies@protonmail.com
 
 ---
 
@@ -294,8 +324,10 @@ Yes — if we display names at all, it should be opt-in.
 ## Content checklist (so nothing gets forgotten)
 
 - [ ] Final origin story (1–3 paragraphs)
-- [ ] Five incentives: name + amount + unlock description
+- [ ] Incentives: confirm amounts are correct (EUR totals)
 - [ ] Charity list (names, links, short why)
-- [ ] Donate page decisions: platform + campaign URLs
+- [ ] Donate page decisions: platform + campaign URLs (Tiltify campaign link)
+- [ ] Streams: add Discord invite link + bilibili channel link (only after first milestone is met)
+- [ ] Streams: post schedule format (timezone + dates) (only after first milestone is met)
 - [ ] Privacy/contact details
-- [ ] Replace GIF placeholders + captions
+- [ ] Home page: pick final incentives link text ("View incentives" vs "See milestones")

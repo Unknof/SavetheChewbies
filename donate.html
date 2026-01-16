@@ -63,10 +63,49 @@
       </section>
 
       <section class="card">
-        <h2>Incentives (coming soon)</h2>
+        <h2 id="incentives">Incentives (milestones)</h2>
         <p>
           To give donors extra motivation, we’re building five incentives tied to the Baby Chew in-game pet.
           Once the incentive list is finalized on Tiltify, it will be mirrored here.
+        </p>
+        <p class="note" id="milestone-status">Milestones unlock in order. Loading current total…</p>
+        <ul class="list" id="milestone-list">
+          <li data-threshold="351" data-index="1"><strong>€351 — Tantrum (knockback reaction):</strong> When Baby Chew gets knocked back, the baby chewbies throw a little tantrum (harmless / cosmetic).</li>
+          <li data-threshold="702" data-index="2"><strong>€702 — Playful sparring:</strong> Baby chewbies can have tiny harmless fights with other players’ baby chewbies.</li>
+          <li data-threshold="702" data-index="3"><strong>€702 — Ice caves (build process):</strong> Baby Chew occasionally builds ice caves with a fun build animation.</li>
+          <li data-threshold="1053" data-index="4"><strong>€1053 — Nydus teleport (fashionable):</strong> Baby Chew and the baby chewbies teleport to the current hero using the Nydus.</li>
+          <li data-threshold="1404" data-index="5"><strong>€1404 — Mecha Baby Chew (skin):</strong> A Mecha Baby Chew skin (like Mecha Chew, but for Baby Chew).</li>
+        </ul>
+        <p class="note">
+          We show the next milestone as soon as the previous one is met. The final milestone is always visible as a teaser.
+        </p>
+        <p class="note">
+          I’ll be streaming the implementation of these features (Discord, and bilibili if possible). Exact stream times will be posted on the site.
+        </p>
+        <p class="note">
+          Why €351? It comes from a Kerrigan Survival tournament on January 10–11 where players spawned a total of 351 baby chewbies.
+        </p>
+        <figure style="margin:14px 0 0;">
+          <img
+            src="./assets/chewbieCountProof/Game1.jpg"
+            alt="Tournament proof screenshot: Game 1"
+            style="max-width:100%;height:auto;border-radius:12px;display:block;"
+            loading="lazy"
+          />
+          <figcaption class="note" style="margin-top:8px;">Proof screenshot (Game 1)</figcaption>
+        </figure>
+
+        <figure style="margin:14px 0 0;">
+          <img
+            src="./assets/chewbieCountProof/Game10.jpg"
+            alt="Tournament proof screenshot: Game 10"
+            style="max-width:100%;height:auto;border-radius:12px;display:block;"
+            loading="lazy"
+          />
+          <figcaption class="note" style="margin-top:8px;">Proof screenshot (Game 10)</figcaption>
+        </figure>
+        <p class="note">
+          Creator pledge (proof of concept): I’ll personally donate €10 for every Baby Chew used in the tournament (6 total → €60) to help kick things off and test that verification works.
         </p>
       </section>
 
@@ -75,6 +114,19 @@
         <p>
           If we display a donor feed, we should make it opt-in (display name) and keep personal data minimal.
           A basic privacy policy and data retention notes should be added before launch.
+        </p>
+        <p class="note">
+          Contact: <a href="mailto:savethechewbies@protonmail.com">savethechewbies@protonmail.com</a>
+        </p>
+        <p class="note">
+          This site stores a short-lived cookie to pre-fill your verification code, and stores verification status server-side so the code can be marked verified.
+        </p>
+      </section>
+
+      <section class="card" id="contact">
+        <h2>Contact</h2>
+        <p>
+          Email: <a href="mailto:savethechewbies@protonmail.com">savethechewbies@protonmail.com</a>
         </p>
       </section>
 
@@ -94,6 +146,61 @@
 
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
+
+      (function () {
+        const statusEl = document.getElementById('milestone-status');
+        const listEl = document.getElementById('milestone-list');
+        if (!statusEl || !listEl) return;
+
+        const items = Array.from(listEl.querySelectorAll('li[data-threshold][data-index]'));
+        if (items.length === 0) return;
+
+        function applyVisibility(total) {
+          const thresholds = items
+            .map((li) => ({
+              li,
+              idx: Number(li.getAttribute('data-index')),
+              t: Number(li.getAttribute('data-threshold')),
+            }))
+            .filter((x) => Number.isFinite(x.idx) && Number.isFinite(x.t))
+            .sort((a, b) => a.idx - b.idx);
+
+          // Determine highest unlocked by comparing totals to thresholds.
+          let unlocked = 0;
+          for (const m of thresholds) {
+            if (total >= m.t) unlocked = Math.max(unlocked, m.idx);
+          }
+
+          const next = Math.min(unlocked + 1, thresholds.length);
+          const last = thresholds.length;
+
+          for (const m of thresholds) {
+            const shouldShow = (m.idx <= unlocked) || (m.idx === next) || (m.idx === last);
+            m.li.style.display = shouldShow ? '' : 'none';
+            m.li.classList.toggle('milestone-locked', m.idx > unlocked);
+            m.li.classList.toggle('milestone-unlocked', m.idx <= unlocked);
+          }
+
+          if (unlocked >= last) {
+            statusEl.textContent = `All milestones unlocked! Current total: €${Math.floor(total)}`;
+          } else {
+            statusEl.textContent = `Current total: €${Math.floor(total)} • Unlocked: ${unlocked}/${last}`;
+          }
+        }
+
+        fetch('./milestones.php', { cache: 'no-store' })
+          .then((r) => r.json())
+          .then((data) => {
+            if (!data || data.ok !== true || typeof data.total !== 'number') {
+              statusEl.textContent = 'Milestone total unavailable right now. Showing full list.';
+              return;
+            }
+            applyVisibility(data.total);
+          })
+          .catch(() => {
+            statusEl.textContent = 'Milestone total unavailable right now. Showing full list.';
+          });
+      })();
     </script>
   </body>
 </html>

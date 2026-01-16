@@ -32,6 +32,55 @@ If you’re deploying via FTP and you’re new to DNS/servers, see:
 
 - [docs/deploy-hetzner.md](docs/deploy-hetzner.md)
 
+## Connect to the server via SSH
+
+You can manage/deploy the site over SSH (no WinSCP required).
+
+### Prereqs
+
+- You have SSH access (hostname/IP, username, and either a password or an SSH key).
+- On Windows 10/11, you can use PowerShell’s built-in `ssh`.
+
+### Quick connect (PowerShell)
+
+```powershell
+ssh USERNAME@savethechew.biz
+```
+
+If your server uses a non-default port:
+
+```powershell
+ssh -p 2222 USERNAME@savethechew.biz
+```
+
+If you use a specific private key:
+
+```powershell
+ssh -i "$env:USERPROFILE\.ssh\id_ed25519" USERNAME@savethechew.biz
+```
+
+### First-time key setup (recommended)
+
+Generate a key (if you don’t already have one):
+
+```powershell
+ssh-keygen -t ed25519
+```
+
+Copy your public key to the server:
+
+```powershell
+ssh-copy-id USERNAME@savethechew.biz
+```
+
+Note: if `ssh-copy-id` isn’t available on your Windows install, you can paste the contents of
+`$env:USERPROFILE\.ssh\id_ed25519.pub` into `~/.ssh/authorized_keys` on the server.
+
+### Deployment over SSH
+
+- SSH deploy options: [docs/deploy-with-ssh.md](docs/deploy-with-ssh.md)
+- Full workflow (includes safe rsync notes): [docs/deploy-workflow.md](docs/deploy-workflow.md)
+
 ## Donation verification (direction)
 
 For GDQ-style verification, the easiest small-scale approach is to use a donation platform that provides an API/webhooks.
