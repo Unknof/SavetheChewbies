@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Donate • Save The Chewbies</title>
+    <meta name="description" content="Donation options and verification approach." />
+
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">STC</div>
+          <div class="brand-text">
+            <div class="brand-name">Save The Chewbies</div>
+            <div class="brand-tagline">Donate to vetted charities helping children</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a class="nav-link" href="./index.html">Home</a>
+          <a class="nav-link" href="./charities.html">Charities</a>
+          <a class="nav-link nav-cta" href="./donate.html" aria-current="page">Donate</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="container">
+      <section class="page-header">
+        <h1>Donate</h1>
+        <p class="lead">
+          The goal is to make donating easy while also being able to verify donations reliably.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2 id="verification">Recommended approach (GDQ-style)</h2>
+        <p>
+          Use a donation platform that supports campaigns + an API (and ideally webhooks).
+          Donors donate on the platform, and we fetch/receive donation events to display totals and verify donors.
+        </p>
+
+        <h3>How this appears on your website</h3>
+        <ul class="list">
+          <li><strong>Safest MVP:</strong> “Donate” buttons that link out to each campaign page.</li>
+          <li><strong>Optional:</strong> embed a platform widget (if the platform allows embedding).</li>
+          <li><strong>Verified tracking:</strong> later, add a small server endpoint to receive webhooks and store events.</li>
+        </ul>
+
+        <h3>Why this is best at small scale</h3>
+        <ul class="list">
+          <li>No handling of card data on your server (lower risk and complexity).</li>
+          <li>Verification is automatic: we record a donation event from the platform.</li>
+          <li>Receipts/screenshots become an optional fallback, not the core system.</li>
+        </ul>
+
+        <div class="callout subtle">
+          <strong>Next decision:</strong> pick the platform you want to use for donations.
+          Once you pick it, I’ll wire the “Donate” buttons and implement verified tracking.
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Start a verified donation (Tiltify Relays)</h2>
+        <p>
+          Once configured, this button will generate a one-time verification code and send you to the donation form.
+          After donating, come back and check your code.
+        </p>
+        <div class="actions">
+          <a class="button" href="./tiltify-donate.php?charity=default">Start verified donation</a>
+          <a class="button button-secondary" href="./verify.php">Check verification status</a>
+        </div>
+        <p class="note">
+          Setup guide: <span class="mono">docs/tiltify-relay-setup.md</span>
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Embed (optional)</h2>
+        <p>
+          Some platforms provide an embed snippet (script or iframe) for a campaign.
+          If embedding is blocked by the platform, the reliable fallback is always linking out.
+        </p>
+
+        <div class="callout subtle">
+          <strong>When you have an embed snippet:</strong> paste it here.
+          <div class="note">(We’ll replace this placeholder block with the platform-provided code.)</div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Option A: Direct to charity sites</h2>
+          <p>
+            Lowest effort, but hardest to verify automatically because every charity has different systems.
+          </p>
+          <p class="note">
+            Verification usually becomes manual (receipts) unless each charity offers an API.
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>Option B: Platform per charity</h2>
+          <p>
+            Create a campaign page per charity (on one platform). Your site links to each campaign.
+          </p>
+          <p class="note">
+            We can track totals per charity by querying the platform’s API.
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>Option C: You collect money</h2>
+          <p>
+            Most control, best tracking, but it means you become the payment receiver and must handle
+            accounting, payouts, refunds, and legal/compliance responsibilities.
+          </p>
+        </article>
+      </section>
+
+      <section class="card" id="privacy">
+        <h2>Privacy</h2>
+        <p>
+          If we display a donor feed, we should make it opt-in (display name) and keep personal data minimal.
+          A basic privacy policy and data retention notes should be added before launch.
+        </p>
+      </section>
+
+      <section class="card" id="contact">
+        <h2>Contact</h2>
+        <p>
+          Add an email address or contact form later. For now you can put a simple email link here.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="footer-title">Save The Chewbies</div>
+          <div class="footer-sub">© <span id="year"></span></div>
+        </div>
+        <div class="footer-links">
+          <a class="nav-link" href="./donate.html#privacy">Privacy</a>
+          <a class="nav-link" href="./donate.html#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

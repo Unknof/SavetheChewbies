@@ -1,0 +1,77 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Preview (Python http.server 8080)",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "http.server", "8080"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Checklist: Server upload (print)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Get-Content -Path '${workspaceFolder}\\docs\\ServerUploadChecklist.md'"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Deploy: SSH options (print)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Get-Content -Path '${workspaceFolder}\\docs\\deploy-with-ssh.md'"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Post-deploy: Webhook GET should be 405",
+      "type": "shell",
+      "command": "curl.exe",
+      "args": ["-i", "https://savethechew.biz/tiltify-webhook.php"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Post-deploy: Verify page should be HTML",
+      "type": "shell",
+      "command": "curl.exe",
+      "args": ["-i", "https://savethechew.biz/verify.php"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Post-deploy: Donate start should redirect",
+      "type": "shell",
+      "command": "curl.exe",
+      "args": ["-I", "https://savethechew.biz/tiltify-donate.php"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Check HTTPS headers (prod)",
+      "type": "shell",
+      "command": "curl.exe",
+      "args": ["-I", "https://savethechew.biz/"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Check HTTPS headers (www)",
+      "type": "shell",
+      "command": "curl.exe",
+      "args": ["-I", "https://www.savethechew.biz/"],
+      "problemMatcher": []
+    }
+  ]
+}

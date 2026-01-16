@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Charities • Save The Chewbies</title>
+    <meta name="description" content="Curated charities helping children." />
+
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">STC</div>
+          <div class="brand-text">
+            <div class="brand-name">Save The Chewbies</div>
+            <div class="brand-tagline">Donate to vetted charities helping children</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a class="nav-link" href="./index.html">Home</a>
+          <a class="nav-link" href="./charities.html" aria-current="page">Charities</a>
+          <a class="nav-link nav-cta" href="./donate.html">Donate</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="container">
+      <section class="page-header">
+        <h1>Charities</h1>
+        <p class="lead">
+          Replace these with the organizations you trust. Each entry can link to a verified donation platform page.
+        </p>
+      </section>
+
+      <section class="grid">
+        <article class="card charity">
+          <h2>Charity A (placeholder)</h2>
+          <p>
+            Short description: what they do, why you trust them, and what impact a donation has.
+          </p>
+          <dl class="meta">
+            <div>
+              <dt>Focus</dt>
+              <dd>Children / health / education</dd>
+            </div>
+            <div>
+              <dt>Region</dt>
+              <dd>Global</dd>
+            </div>
+          </dl>
+          <div class="actions">
+            <a class="button" href="./donate.html">Donate via platform</a>
+            <a class="button button-secondary" href="#">Official site</a>
+          </div>
+        </article>
+
+        <article class="card charity">
+          <h2>Charity B (placeholder)</h2>
+          <p>
+            Short description: what they do, why you trust them, and what impact a donation has.
+          </p>
+          <dl class="meta">
+            <div>
+              <dt>Focus</dt>
+              <dd>Child protection</dd>
+            </div>
+            <div>
+              <dt>Region</dt>
+              <dd>EU</dd>
+            </div>
+          </dl>
+          <div class="actions">
+            <a class="button" href="./donate.html">Donate via platform</a>
+            <a class="button button-secondary" href="#">Official site</a>
+          </div>
+        </article>
+
+        <article class="card charity">
+          <h2>Charity C (placeholder)</h2>
+          <p>
+            Short description: what they do, why you trust them, and what impact a donation has.
+          </p>
+          <dl class="meta">
+            <div>
+              <dt>Focus</dt>
+              <dd>Nutrition</dd>
+            </div>
+            <div>
+              <dt>Region</dt>
+              <dd>Global</dd>
+            </div>
+          </dl>
+          <div class="actions">
+            <a class="button" href="./donate.html">Donate via platform</a>
+            <a class="button button-secondary" href="#">Official site</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="callout">
+        <h2>What “verified” means here</h2>
+        <p>
+          For GDQ-style verification, we need donations to happen on a platform that can notify us
+          (API/webhook) so we can record that donation server-side.
+        </p>
+        <p class="note">
+          If you want, I can wire this to a specific platform once you pick one.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="footer-title">Save The Chewbies</div>
+          <div class="footer-sub">© <span id="year"></span></div>
+        </div>
+        <div class="footer-links">
+          <a class="nav-link" href="./donate.html#privacy">Privacy</a>
+          <a class="nav-link" href="./donate.html#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

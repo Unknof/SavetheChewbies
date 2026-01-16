@@ -1,0 +1,19 @@
+# Optional hardening (Apache/LiteSpeed only). Safe to leave in place if ignored.
+
+Options -Indexes
+
+# Never allow access to config files
+<FilesMatch "^(config\.php|config\.example\.php)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Block internal folders that should not be served publicly
+<IfModule mod_alias.c>
+  RedirectMatch 404 ^/(docs|data)(/|$)
+</IfModule>

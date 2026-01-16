@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Save The Chewbies</title>
+    <meta name="description" content="A simple charity hub to help save children by donating to vetted organizations." />
+
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">STC</div>
+          <div class="brand-text">
+            <div class="brand-name">Save The Chewbies</div>
+            <div class="brand-tagline">Donate to vetted charities helping children</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a class="nav-link" href="./index.html" aria-current="page">Home</a>
+          <a class="nav-link" href="./charities.html">Charities</a>
+          <a class="nav-link nav-cta" href="./donate.html">Donate</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="container">
+      <section class="hero">
+        <div class="hero-copy">
+          <h1>Make your donation count.</h1>
+          <p class="lead">
+            This site is a simple hub that points you to specific charities focused on helping children.
+            Over time we’ll add a transparent way to verify donations (without relying on easily faked receipts).
+          </p>
+          <div class="actions">
+            <a class="button" href="./charities.html">View charities</a>
+            <a class="button button-secondary" href="./donate.html">How donating works</a>
+          </div>
+          <p class="note">
+            Note: This is an early setup version. Content and artwork will be refined.
+          </p>
+        </div>
+
+        <div class="hero-media" aria-label="Featured GIFs">
+          <div class="media-grid">
+            <figure class="media-card">
+              <img src="./assets/gifs/placeholder.gif" alt="Placeholder animated gif" loading="lazy" />
+              <figcaption>Drop your first GIF into <span class="mono">assets/gifs/</span></figcaption>
+            </figure>
+            <figure class="media-card">
+              <img src="./assets/gifs/placeholder.gif" alt="Placeholder animated gif" loading="lazy" />
+              <figcaption>Then replace this second one</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Vetted charities</h2>
+          <p>
+            Keep a curated list of organizations you trust. Each charity gets a short “why” and a donate link.
+          </p>
+          <a class="text-link" href="./charities.html">Go to charities →</a>
+        </article>
+
+        <article class="card">
+          <h2>Donation verification</h2>
+          <p>
+            Best option at small scale: use a donation platform that provides an API/webhooks (GDQ-style),
+            so we can confirm donations automatically.
+          </p>
+          <a class="text-link" href="./donate.html#verification">See tracking options →</a>
+        </article>
+
+        <article class="card">
+          <h2>Transparency</h2>
+          <p>
+            We can publish totals by charity and a donor feed (opt-in display names), plus exportable reports.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="footer-title">Save The Chewbies</div>
+          <div class="footer-sub">© <span id="year"></span></div>
+        </div>
+        <div class="footer-links">
+          <a class="nav-link" href="./donate.html#privacy">Privacy</a>
+          <a class="nav-link" href="./donate.html#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
