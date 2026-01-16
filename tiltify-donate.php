@@ -8,12 +8,18 @@ declare(strict_types=1);
 // 3) User returns to /verify.php?code=<relay_key_id>
 
 $configFile = __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
-$config = is_file($configFile) ? require $configFile : null;
+
+$configExists = is_file($configFile);
+$config = $configExists ? require $configFile : null;
 
 if (!is_array($config)) {
     http_response_code(500);
     header('Content-Type: text/plain; charset=utf-8');
-    echo "Server not configured. Create config.php from config.example.php";
+    if (!$configExists) {
+        echo "Server not configured. Create config.php from config.example.php";
+    } else {
+        echo "Invalid config.php (must return a PHP array). Also check that PHP-FPM can read the file.";
+    }
     exit;
 }
 
@@ -153,6 +159,17 @@ function random_code(int $bytes = 12): string
     return rtrim(strtr(base64_encode(random_bytes($bytes)), '+/', '-_'), '=');
 }
 
+function is_https_request(): bool
+{
+    if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+        return true;
+    }
+    if (isset($_SERVER['SERVER_PORT']) && (string)$_SERVER['SERVER_PORT'] === '443') {
+        return true;
+    }
+    return false;
+}
+
 $donationUrl = (string)($config['tiltify_donation_url'] ?? '');
 $relayId = (string)($config['tiltify_webhook_relay_id'] ?? '');
 
@@ -212,6 +229,16 @@ try {
         'charity' => $charity,
     ];
     write_json_file_atomic($relaysPath, $relays);
+
+    // Store the verification code for the user so /verify.php can auto-fill it after the redirect.
+    // (This avoids relying on a custom header that browsers won’t expose to users.)
+    setcookie('stc_verify_code', $relayKeyId, [
+        'expires' => time() + 60 * 60 * 6,
+        'path' => '/',
+        'secure' => is_https_request(),
+        'httponly' => true,
+        'samesite' => 'Lax',
+    ]);
 
     // Redirect user to Tiltify donate form.
     $sep = (str_contains($donationUrl, '?')) ? '&' : '?';

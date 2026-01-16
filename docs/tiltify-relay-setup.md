@@ -59,6 +59,10 @@ That must be fixed before webhooks/relays will work.
 4. Create a Relay under that Webhook Endpoint
    - Copy the **webhook_relay_id**
 
+Notes:
+- Your webhook endpoint must be publicly reachable over HTTPS.
+- The signing key from Tiltify must match `tiltify_webhook_signing_key` in `config.php`.
+
 ## Step 2: Create a donation campaign/page
 
 Create a Tiltify campaign or donation page you want donors to use.
@@ -91,6 +95,8 @@ Your endpoint must return HTTP 200-299 or it will eventually deactivate.
 
 - Start: `https://savethechew.biz/tiltify-donate.php?charity=default`
 - Check status: `https://savethechew.biz/verify.php?code=<code>`
+
+Tip: after starting a verified donation, the site stores your verification code in a short-lived cookie so the Verify page can auto-fill it (you can still copy/paste it manually if needed).
 
 ## Security notes
 

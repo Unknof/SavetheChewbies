@@ -19,6 +19,11 @@ function read_json_file(string $path): array
 }
 
 $code = isset($_GET['code']) ? (string)$_GET['code'] : '';
+$autoFilledFromCookie = false;
+if ($code === '' && isset($_COOKIE['stc_verify_code']) && is_string($_COOKIE['stc_verify_code'])) {
+  $code = (string)$_COOKIE['stc_verify_code'];
+  $autoFilledFromCookie = ($code !== '');
+}
 
 $dataDir = is_array($config) && isset($config['data_dir']) ? (string)$config['data_dir'] : (__DIR__ . DIRECTORY_SEPARATOR . 'data');
 $relaysPath = $dataDir . DIRECTORY_SEPARATOR . 'relays.json';
@@ -81,6 +86,11 @@ function h(string $s): string
           </label>
           <button class="button" type="submit">Check</button>
         </form>
+        <?php if ($autoFilledFromCookie): ?>
+          <p class="note" style="margin-top:10px;">
+            We pre-filled your most recent verification code from this browser.
+          </p>
+        <?php endif; ?>
       </section>
 
       <?php if ($code === ''): ?>
