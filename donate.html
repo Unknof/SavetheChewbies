@@ -77,7 +77,7 @@
           <li data-threshold="1404" data-index="5"><strong>€1404 — Mecha Baby Chew (skin):</strong> A Mecha Baby Chew skin (like Mecha Chew, but for Baby Chew).</li>
         </ul>
         <p class="note">
-          All milestones are listed below with their full descriptions.
+          All milestones are listed here with their full descriptions.
         </p>
         <p class="note">
           I’ll be streaming the implementation of these features (Discord, and bilibili if possible). Exact stream times will be posted on the site.
@@ -140,6 +140,35 @@
         const listEl = document.getElementById('milestone-list');
         if (!statusEl || !listEl) return;
 
+        // Source of truth for milestone descriptions; used to fill gaps if Tiltify omits descriptions.
+        const fallbackMilestones = [
+          {
+            amount: 351,
+            name: 'Tantrum (knockback reaction)',
+            description: 'When Baby Chew gets knocked back, the baby chewbies throw a little tantrum (harmless / cosmetic).',
+          },
+          {
+            amount: 702,
+            name: 'Playful sparring',
+            description: 'Baby chewbies can have tiny harmless fights with other players’ baby chewbies.',
+          },
+          {
+            amount: 702,
+            name: 'Ice caves (build process)',
+            description: 'Baby Chew occasionally builds ice caves with a fun build animation.',
+          },
+          {
+            amount: 1053,
+            name: 'Nydus teleport (fashionable)',
+            description: 'Baby Chew and the baby chewbies teleport to the current hero using the Nydus.',
+          },
+          {
+            amount: 1404,
+            name: 'Mecha Baby Chew (skin)',
+            description: 'A Mecha Baby Chew skin (like Mecha Chew, but for Baby Chew).',
+          },
+        ];
+
         function getItems() {
           return Array.from(listEl.querySelectorAll('li[data-threshold][data-index]'));
         }
@@ -194,11 +223,31 @@
 
             const currency = typeof data.currency === 'string' ? data.currency : 'EUR';
             const milestones = data.milestones
-              .map((m) => ({
-                name: typeof m.name === 'string' ? m.name : '',
-                description: typeof m.description === 'string' ? m.description : '',
-                amount: typeof m.amount === 'number' ? m.amount : Number(m.amount),
-              }))
+              .map((m, i) => {
+                const amount = typeof m.amount === 'number' ? m.amount : Number(m.amount);
+                const name = typeof m.name === 'string' ? m.name : '';
+                const description = typeof m.description === 'string' ? m.description : '';
+
+                // Fill missing descriptions from fallback by position, then by name match.
+                let resolvedDescription = description;
+                if (!resolvedDescription) {
+                  const fbByIndex = fallbackMilestones[i];
+                  if (fbByIndex && fbByIndex.description) {
+                    resolvedDescription = fbByIndex.description;
+                  } else {
+                    const fbMatch = fallbackMilestones.find((f) => f.name.toLowerCase() === name.toLowerCase());
+                    if (fbMatch && fbMatch.description) {
+                      resolvedDescription = fbMatch.description;
+                    }
+                  }
+                }
+
+                return {
+                  name,
+                  description: resolvedDescription,
+                  amount,
+                };
+              })
               .filter((m) => m.name && Number.isFinite(m.amount));
 
             if (milestones.length === 0) return;
@@ -213,7 +262,8 @@
               strong.textContent = `${fmtCurrency(m.amount, currency)} — ${m.name}: `;
               li.appendChild(strong);
 
-              li.appendChild(document.createTextNode(m.description || ''));
+              const descText = m.description || '';
+              li.appendChild(document.createTextNode(descText));
               listEl.appendChild(li);
             });
           } catch {
