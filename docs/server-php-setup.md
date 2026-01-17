@@ -119,6 +119,16 @@ savethechew.biz, www.savethechew.biz {
 
   file_server
 
+  # Security headers (Caddy)
+  header {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Content-Security-Policy "default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'"
+    Referrer-Policy "strict-origin-when-cross-origin"
+    X-Content-Type-Options "nosniff"
+    X-Frame-Options "DENY"
+    Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  }
+
   # Optional hardening (recommended)
   @private {
     path /config.php /config.example.php

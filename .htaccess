@@ -17,3 +17,21 @@ Options -Indexes
 <IfModule mod_alias.c>
   RedirectMatch 404 ^/(docs|data)(/|$)
 </IfModule>
+
+# Security headers (Apache/LiteSpeed). Ignored by Caddy/Nginx but safe to keep.
+<IfModule mod_headers.c>
+  # Enforce HTTPS for a year; set only if HTTPS is fully working.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+  # Content Security Policy tuned for self-hosted assets and inline JS/CSS in the pages.
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'"
+
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Reduce server banner if exposed
+ServerSignature Off
+ServerTokens Prod
