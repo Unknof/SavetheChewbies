@@ -36,6 +36,45 @@ Tiltify campaign (reference)
 2. Configure your web server to serve this folder (or a copy of it) as the site root.
 3. Enable HTTPS (Let’s Encrypt).
 
+## Update `config.php` on the server (Linux / SSH)
+
+`config.php` is intentionally not committed (it’s in `.gitignore`). Create/update it directly on the server.
+
+### Option A: paste the contents while logged in (recommended)
+
+SSH into the server, then run:
+
+```bash
+sudo tee /var/www/savethechew/config.php > /dev/null <<'PHP'
+<?php
+
+return [
+	// Fill from config.example.php
+	'tiltify_client_id' => '...',
+	'tiltify_client_secret' => '...',
+	'tiltify_webhook_signing_key' => '...',
+	'tiltify_webhook_relay_id' => '...',
+	'tiltify_donation_url' => 'https://donate.tiltify.com/3fd651b1-6e86-4a84-be46-f9ae61ca718a',
+	'tiltify_campaign_id' => '3fd651b1-6e86-4a84-be46-f9ae61ca718a',
+	'milestone_total_override' => null,
+	'data_dir' => __DIR__ . DIRECTORY_SEPARATOR . 'data',
+	'admin_key' => 'CHANGE_ME',
+];
+PHP
+
+sudo chown root:www-data /var/www/savethechew/config.php
+sudo chmod 640 /var/www/savethechew/config.php
+```
+
+### Option B: stream your local file up (Linux/WSL/macOS)
+
+Run this from your local machine (not on the server):
+
+```bash
+ssh root@savethechew.biz 'cat > /var/www/savethechew/config.php' < ./config.php
+ssh root@savethechew.biz 'chown root:www-data /var/www/savethechew/config.php; chmod 640 /var/www/savethechew/config.php'
+```
+
 If you’re deploying via FTP and you’re new to DNS/servers, see:
 
 - [docs/deploy-hetzner.md](docs/deploy-hetzner.md)

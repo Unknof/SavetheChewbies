@@ -36,6 +36,8 @@ If you don’t want to use WinSCP, use:
 
 See: `docs/deploy-with-ssh.md`
 
+Tip: for secrets, see the `config.php` upload section in `docs/deploy-with-ssh.md`.
+
 ## “Copilot-friendly” habit
 
 Whenever you change the site, do this checklist:

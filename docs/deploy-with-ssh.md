@@ -47,17 +47,52 @@ From your Windows PC (PowerShell) you can copy files over SSH.
 Example (copy a single file):
 
 ```powershell
-scp .\donate.html root@savethechew.biz:/var/www/savethechew/donate.html
+scp .\donate.html root@91.98.238.213:/var/www/savethechew/donate.html
 ```
 
 Example (copy folders):
 
 ```powershell
-scp -r .\assets root@savethechew.biz:/var/www/savethechew/
+scp -r .\assets root@91.98.238.213:/var/www/savethechew/
 ```
 
 Pros: no extra tooling.
 Cons: easy to forget a file.
+
+### Upload/replace `config.php` over SSH (secrets)
+
+`config.php` is ignored by Git in this repo and should live on the server only.
+
+Assuming your server web root is `/var/www/savethechew`:
+
+Option A: `scp` (copy the file)
+
+```powershell
+# Copy your local config.php up to the server
+scp .\config.php root@91.98.238.213:/var/www/savethechew/config.php
+
+# Lock down permissions (recommended)
+ssh root@91.98.238.213 "chown root:www-data /var/www/savethechew/config.php; chmod 640 /var/www/savethechew/config.php"
+```
+
+Option B: “force the contents” via SSH (no scp)
+
+This is handy when you want to stream the local file contents into place remotely.
+
+```powershell
+# Stream the local file contents into the remote path
+Get-Content -Raw .\config.php | ssh root@91.98.238.213 "cat > /var/www/savethechew/config.php"
+
+# Lock down permissions (recommended)
+ssh root@91.98.238.213 "chown root:www-data /var/www/savethechew/config.php; chmod 640 /var/www/savethechew/config.php"
+```
+
+If you are NOT logging in as root, use `sudo tee` instead:
+
+```powershell
+Get-Content -Raw .\config.php | ssh USER@91.98.238.213 "sudo tee /var/www/savethechew/config.php > /dev/null"
+ssh USER@91.98.238.213 "sudo chown root:www-data /var/www/savethechew/config.php; sudo chmod 640 /var/www/savethechew/config.php"
+```
 
 ## Option 3 (best for syncing): `rsync` (fast + accurate)
 
@@ -74,7 +109,7 @@ rsync -av --delete \
   --exclude '.git/' \
   --exclude 'docs/' \
   --exclude 'config.php' \
-  ./ root@savethechew.biz:/var/www/savethechew/
+  ./ root@91.98.238.213:/var/www/savethechew/
 ```
 
 ## Post-deploy checks (always)
