@@ -13,7 +13,7 @@ Last updated: 2026-01-16
 Save The Chewbies
 
 ### Short tagline (header)
-Donate to Save the Children (with fun incentives).
+Donate to Save the Children.
 
 ### Meta description (SEO)
 Donate to Save the Children via Tiltify, with donation incentives that update live.
@@ -46,7 +46,7 @@ At the same time, I wanted the donation side to be honest and verifiable — not
 That’s why this project uses **Tiltify** and a webhook: donations can be verified automatically.
 
 ### Short-form (about card)
-Built by a game developer who wanted a simple, verifiable donation drive with fun incentives.
+Built by a game developer who wanted a simple, verifiable donation drive with incentives.
 
 ### Disclaimer (recommended)
 “Kerrigan Survival” and “StarCraft II” are referenced as personal background; this site is not affiliated with or endorsed by Blizzard Entertainment.
@@ -151,7 +151,7 @@ Links:
 ## Donate page (donate.html)
 
 ### Page intro (lead)
-The goal is to make donating easy, fun (with incentives), and reliably verifiable.
+The goal is to make donating easy and reliably verifiable.
 
 ### Section: Recommended approach (GDQ-style)
 **Heading:** Recommended approach (GDQ-style)

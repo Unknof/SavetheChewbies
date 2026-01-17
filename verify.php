@@ -52,6 +52,15 @@ function h(string $s): string
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Verify donation • Save The Chewbies</title>
+    <meta name="description" content="Verify your Tiltify donation with a code." />
+
+    <meta property="og:title" content="Verify donation • Save The Chewbies" />
+    <meta property="og:description" content="Verify your Tiltify donation with a code." />
+    <meta property="og:image" content="./assets/icon.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Verify donation • Save The Chewbies" />
+    <meta name="twitter:description" content="Verify your Tiltify donation with a code." />
+    <meta name="twitter:image" content="./assets/icon.png" />
     <link rel="icon" href="./assets/icon.png" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/icon.png" />
     <link rel="stylesheet" href="./assets/styles.css" />
@@ -60,7 +69,7 @@ function h(string $s): string
     <header class="site-header">
       <div class="container header-inner">
         <div class="brand">
-          <div class="brand-mark" aria-hidden="true">STC</div>
+          <div class="brand-mark" aria-hidden="true"><img src="./assets/icon.png" alt="" width="42" height="42" /></div>
           <div class="brand-text">
             <div class="brand-name">Save The Chewbies</div>
             <div class="brand-tagline">Donation verification</div>

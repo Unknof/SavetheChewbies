@@ -6,6 +6,14 @@
     <title>Donate • Save The Chewbies</title>
     <meta name="description" content="Donate to Save the Children via Tiltify and verify your donation with a code." />
 
+    <meta property="og:title" content="Donate • Save The Chewbies" />
+    <meta property="og:description" content="Donate to Save the Children via Tiltify and verify your donation with a code." />
+    <meta property="og:image" content="./assets/icon.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Donate • Save The Chewbies" />
+    <meta name="twitter:description" content="Donate to Save the Children via Tiltify and verify your donation with a code." />
+    <meta name="twitter:image" content="./assets/icon.png" />
+
     <link rel="icon" href="./assets/icon.png" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/icon.png" />
 
@@ -17,10 +25,10 @@
     <header class="site-header">
       <div class="container header-inner">
         <div class="brand">
-          <div class="brand-mark" aria-hidden="true">STC</div>
+          <div class="brand-mark" aria-hidden="true"><img src="./assets/icon.png" alt="" width="42" height="42" /></div>
           <div class="brand-text">
             <div class="brand-name">Save The Chewbies</div>
-            <div class="brand-tagline">Donate to Save the Children (with fun incentives)</div>
+            <div class="brand-tagline">Donate to Save the Children</div>
           </div>
         </div>
 
@@ -37,7 +45,7 @@
       <section class="page-header">
         <h1>Donate</h1>
         <p class="lead">
-          The goal is to make donating easy, fun (with incentives), and reliably verifiable.
+          The goal is to make donating easy and reliably verifiable.
         </p>
       </section>
 
@@ -160,7 +168,7 @@
           }
         }
 
-        function applyVisibility(total, currency) {
+        function applyVisibility(total, currency, goal) {
           const items = getItems();
           if (items.length === 0) return;
 
@@ -192,10 +200,15 @@
             m.li.classList.toggle('milestone-unlocked', m.idx <= unlocked);
           }
 
+          const hasGoal = typeof goal === 'number' && Number.isFinite(goal) && goal > 0;
+          const raisedText = hasGoal
+            ? `Raised: ${fmtCurrency(Math.floor(total), currency)} of ${fmtCurrency(Math.floor(goal), currency)}`
+            : `Current total: ${fmtCurrency(Math.floor(total), currency)}`;
+
           if (unlocked >= last) {
-            statusEl.textContent = `All milestones unlocked! Current total: ${fmtCurrency(Math.floor(total), currency)}`;
+            statusEl.textContent = `All milestones unlocked! ${raisedText}`;
           } else {
-            statusEl.textContent = `Current total: ${fmtCurrency(Math.floor(total), currency)} • ${fmtCurrency(Math.ceil(remaining), currency)} to next milestone`;
+            statusEl.textContent = `${raisedText} • ${fmtCurrency(Math.ceil(remaining), currency)} to next milestone`;
           }
         }
 
@@ -254,7 +267,11 @@
               showAll();
               return;
             }
-            applyVisibility(data.total, typeof data.currency === 'string' ? data.currency : 'EUR');
+            applyVisibility(
+              data.total,
+              typeof data.currency === 'string' ? data.currency : 'EUR',
+              typeof data.goal === 'number' ? data.goal : NaN
+            );
           } catch {
             statusEl.textContent = 'Milestone total unavailable right now. Showing full list.';
             showAll();

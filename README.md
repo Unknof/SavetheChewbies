@@ -24,6 +24,12 @@ The homepage and Donate page can show a live raised total by calling `milestones
 - Set `tiltify_campaign_id` in `config.php` (see `config.example.php`), or
 - For testing, set `milestone_total_override` in `config.php`.
 
+Tiltify campaign (reference)
+
+- Campaign page: https://tiltify.com/@savethecewbies/savethechewbies-a-fundraiser-for-save-the-children
+- Donation page: https://donate.tiltify.com/3fd651b1-6e86-4a84-be46-f9ae61ca718a
+- Campaign id (for `tiltify_campaign_id`): `3fd651b1-6e86-4a84-be46-f9ae61ca718a`
+
 ## Deployment (high level)
 
 1. Point your domain DNS `A/AAAA` record at your Hetzner server.

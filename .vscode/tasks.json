@@ -13,10 +13,10 @@
       "problemMatcher": []
     },
     {
-      "label": "Preview (PHP built-in server 8081)",
+      "label": "Preview (Python http.server 8081)",
       "type": "shell",
-      "command": "php",
-      "args": ["-S", "localhost:8081", "-t", "."],
+      "command": "python",
+      "args": ["-m", "http.server", "8081"],
       "options": {
         "cwd": "${workspaceFolder}"
       },

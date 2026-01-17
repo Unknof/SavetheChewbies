@@ -211,6 +211,36 @@ function extract_campaign_total(?array $json): ?float
     return null;
 }
 
+function extract_campaign_goal(?array $json): ?float
+{
+    if (!is_array($json)) {
+        return null;
+    }
+
+    $candidates = [
+        $json['data']['attributes']['goal']['value'] ?? null,
+        $json['data']['attributes']['fundraising_goal']['value'] ?? null,
+        $json['data']['attributes']['goal_amount']['value'] ?? null,
+        $json['data']['attributes']['goal'] ?? null,
+        $json['data']['attributes']['fundraising_goal'] ?? null,
+        $json['data']['attributes']['goal_amount'] ?? null,
+    ];
+
+    foreach ($candidates as $v) {
+        if (is_int($v) || is_float($v)) {
+            return (float)$v;
+        }
+        if (is_string($v) && is_numeric($v)) {
+            return (float)$v;
+        }
+        if (is_array($v) && isset($v['value']) && (is_numeric($v['value']) || is_int($v['value']) || is_float($v['value']))) {
+            return (float)$v['value'];
+        }
+    }
+
+    return null;
+}
+
 function extract_campaign_currency(?array $json): ?string
 {
     if (!is_array($json)) {
@@ -241,6 +271,7 @@ if (is_int($override) || is_float($override) || (is_string($override) && is_nume
         'ok' => true,
         'source' => 'override',
         'total' => (float)$override,
+        'goal' => null,
         'currency' => 'EUR',
         'updated_at' => gmdate('c'),
     ]);
@@ -277,18 +308,31 @@ try {
     }
 
     $total = extract_campaign_total($resp['json']);
+    $goal = extract_campaign_goal($resp['json']);
     $currency = extract_campaign_currency($resp['json']);
 
+    // Some campaign responses may omit raised totals when they are still 0.
+    // Treat a missing total as 0 (non-fatal), but still surface a warning.
+    $warning = null;
     if ($total === null) {
-        throw new RuntimeException('Could not extract campaign total from response');
+        $total = 0.0;
+        $warning = 'Could not extract campaign total; assuming 0.';
+    }
+
+    // Normalize to non-negative values.
+    $total = max(0.0, (float)$total);
+    if ($goal !== null) {
+        $goal = max(0.0, (float)$goal);
     }
 
     echo json_encode([
         'ok' => true,
         'source' => 'tiltify',
         'total' => $total,
+        'goal' => $goal,
         'currency' => $currency,
         'updated_at' => gmdate('c'),
+        'warning' => $warning,
     ]);
 } catch (Throwable $e) {
     http_response_code(200);

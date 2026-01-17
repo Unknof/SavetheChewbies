@@ -158,6 +158,7 @@ header('Cache-Control: no-store');
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Admin • Save The Chewbies</title>
+    <meta name="description" content="Admin dashboard for webhook relay and verification status." />
     <link rel="icon" href="./assets/icon.png" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/icon.png" />
     <link rel="stylesheet" href="./assets/styles.css" />
@@ -166,7 +167,7 @@ header('Cache-Control: no-store');
     <header class="site-header">
       <div class="container header-inner">
         <div class="brand">
-          <div class="brand-mark" aria-hidden="true">STC</div>
+          <div class="brand-mark" aria-hidden="true"><img src="./assets/icon.png" alt="" width="42" height="42" /></div>
           <div class="brand-text">
             <div class="brand-name">Save The Chewbies</div>
             <div class="brand-tagline">Admin</div>
