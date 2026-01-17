@@ -188,12 +188,15 @@ function extract_campaign_total(?array $json): ?float
     }
 
     $candidates = [
+        $json['data']['total_raised']['value'] ?? null,
+        $json['data']['amount_raised']['value'] ?? null,
+        $json['data']['raised_amount']['value'] ?? null,
+        $json['data']['total_amount_raised']['value'] ?? null,
+        $json['data']['total_raised'] ?? null,
+        $json['data']['amount_raised'] ?? null,
+        // Fallback: old API structure with attributes
         $json['data']['attributes']['total_raised']['value'] ?? null,
         $json['data']['attributes']['amount_raised']['value'] ?? null,
-        $json['data']['attributes']['raised_amount']['value'] ?? null,
-        $json['data']['attributes']['total_amount_raised']['value'] ?? null,
-        $json['data']['attributes']['total_raised'] ?? null,
-        $json['data']['attributes']['amount_raised'] ?? null,
     ];
 
     foreach ($candidates as $v) {
@@ -218,12 +221,15 @@ function extract_campaign_goal(?array $json): ?float
     }
 
     $candidates = [
+        $json['data']['goal']['value'] ?? null,
+        $json['data']['fundraising_goal']['value'] ?? null,
+        $json['data']['goal_amount']['value'] ?? null,
+        $json['data']['goal'] ?? null,
+        $json['data']['fundraising_goal'] ?? null,
+        $json['data']['goal_amount'] ?? null,
+        // Fallback: old API structure with attributes
         $json['data']['attributes']['goal']['value'] ?? null,
         $json['data']['attributes']['fundraising_goal']['value'] ?? null,
-        $json['data']['attributes']['goal_amount']['value'] ?? null,
-        $json['data']['attributes']['goal'] ?? null,
-        $json['data']['attributes']['fundraising_goal'] ?? null,
-        $json['data']['attributes']['goal_amount'] ?? null,
     ];
 
     foreach ($candidates as $v) {
@@ -248,11 +254,14 @@ function extract_campaign_currency(?array $json): ?string
     }
 
     $candidates = [
+        $json['data']['currency_code'] ?? null,
+        $json['data']['currency'] ?? null,
+        $json['data']['total_raised']['currency'] ?? null,
+        $json['data']['amount_raised']['currency'] ?? null,
+        $json['data']['raised_amount']['currency'] ?? null,
+        // Fallback: old API structure with attributes
         $json['data']['attributes']['currency_code'] ?? null,
-        $json['data']['attributes']['currency'] ?? null,
         $json['data']['attributes']['total_raised']['currency'] ?? null,
-        $json['data']['attributes']['amount_raised']['currency'] ?? null,
-        $json['data']['attributes']['raised_amount']['currency'] ?? null,
     ];
 
     foreach ($candidates as $v) {

@@ -50,24 +50,18 @@
       <section class="card" id="privacy">
         <h2>Privacy</h2>
         <p>
-          This site is built to verify donations without screenshots. We try to keep personal data minimal.
+          This site is a simple fundraising hub. We keep data collection minimal.
         </p>
         <h3 style="margin:18px 0 8px;">What we store</h3>
         <ul class="list">
-          <li><strong>Verification code cookie:</strong> A short-lived cookie is stored to remember your most recent verification code so the Verify page can pre-fill it.</li>
-          <li><strong>Verification status:</strong> Server-side status for that code (pending/verified/cancelled + timestamps).</li>
-          <li><strong>Webhook audit log:</strong> A minimal log of webhook events for debugging/auditing. This may include donor display name and donation message if Tiltify sends it (and if the donor provided it).</li>
+          <li><strong>Analytics:</strong> Basic page view analytics may be collected to understand site usage.</li>
+          <li><strong>Donation data:</strong> We may receive webhook notifications from Tiltify about donations to display the total raised and recent donors.</li>
         </ul>
-        <p class="note">We don’t handle payment information. Donations happen on Tiltify.</p>
+        <p class="note">We don't handle payment information. Donations happen on Tiltify's secure platform.</p>
 
         <h3 style="margin:18px 0 8px;">Retention</h3>
         <p>
-          Verification records/logs are kept only as long as needed to operate and debug the verification flow.
-        </p>
-
-        <h3 style="margin:18px 0 8px;">Deletion requests</h3>
-        <p>
-          Email the address below with your verification code and we can remove the related server-side record.
+          Donation totals and recent donor information are kept to display on the site. Personal data is minimal.
         </p>
       </section>
 

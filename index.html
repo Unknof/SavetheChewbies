@@ -46,22 +46,20 @@
         <div class="hero-copy">
           <h1>Make your donation count.</h1>
           <p class="lead">
-            This site is a simple hub to help you donate to <strong>Save the Children</strong>.
-            Donations run through <strong>Tiltify</strong>, so we can verify them via webhook events instead of relying on screenshots.
+            This site is a simple hub to help you donate to <strong>Save the Children</strong> through <strong>Tiltify</strong>.
           </p>
           <div class="actions">
             <a class="button" href="./donate.html">Donate now</a>
             <a class="button button-secondary" href="./donate.html#incentives">See milestones</a>
-            <a class="button button-secondary" href="./verify.php">Verify a code</a>
           </div>
         </div>
 
         <div class="hero-media" aria-label="How it works">
           <h2 style="margin:0 0 10px;font-size:1.1rem;">How it works</h2>
           <ol class="list" style="margin:0;padding-left:18px;">
-            <li>Click <strong>Start verified donation</strong>.</li>
+            <li>Click <strong>Donate now</strong>.</li>
             <li>Donate on Tiltify to <strong>Save the Children</strong>.</li>
-            <li>Return here to check your <strong>verification code</strong>.</li>
+            <li>Track progress on the milestones below.</li>
           </ol>
           <p class="note" style="margin:10px 0 0;">
             This site does not handle payment information.
@@ -89,13 +87,11 @@
         </article>
 
         <article class="card">
-          <h2>Donation verification</h2>
+          <h2>Milestones & Incentives</h2>
           <p>
-            Start a verified donation, get a code, and this site verifies it via signed webhook events.
-            No screenshots.
+            Track donation milestones to unlock special Baby Chew features and cosmetics in-game.
           </p>
-          <a class="text-link" href="./verify.php">Verify a code →</a>
-          <a class="text-link" href="./donate.html#verification">How it works →</a>
+          <a class="text-link" href="./donate.html#incentives">View milestones →</a>
         </article>
 
         <article class="card">
@@ -135,6 +131,13 @@
             />
             <figcaption class="note" style="margin-top:8px;">Proof screenshot (Game 10)</figcaption>
           </figure>
+        </article>
+
+        <article class="card">
+          <h2>Recent Donations</h2>
+          <div id="donations-list">
+            <p class="note">Loading donations...</p>
+          </div>
         </article>
       </section>
     </main>
@@ -246,6 +249,97 @@
           refresh();
           setInterval(refresh, 30000);
         });
+      })();
+
+      // Recent donations display
+      (function () {
+        const donationsEl = document.getElementById('donations-list');
+        if (!donationsEl) return;
+
+        function fmtCurrency(value, currency) {
+          try {
+            return new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: currency || 'USD',
+              maximumFractionDigits: 0,
+            }).format(value);
+          } catch {
+            return '$' + String(Math.round(value));
+          }
+        }
+
+        function formatTime(isoString) {
+          try {
+            const date = new Date(isoString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+
+            if (diffMins < 1) return 'just now';
+            if (diffMins < 60) return `${diffMins}m ago`;
+            if (diffHours < 24) return `${diffHours}h ago`;
+            if (diffDays < 7) return `${diffDays}d ago`;
+            
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+          } catch {
+            return '';
+          }
+        }
+
+        async function loadDonations() {
+          try {
+            const r = await fetch('./donations.php', { cache: 'no-store' });
+            const data = await r.json();
+            
+            if (!data || data.ok !== true || !Array.isArray(data.donations)) {
+              donationsEl.innerHTML = '<p class="note">No donations yet.</p>';
+              return;
+            }
+
+            if (data.donations.length === 0) {
+              donationsEl.innerHTML = '<p class="note">No donations yet. Be the first!</p>';
+              return;
+            }
+
+            // Show up to 10 most recent
+            const recent = data.donations.slice(0, 10);
+            
+            const html = recent.map(d => {
+              const name = d.donor_name || 'Anonymous';
+              const amount = fmtCurrency(d.amount, d.currency);
+              const time = formatTime(d.completed_at);
+              const message = d.donor_message && d.donor_message.trim() !== '' 
+                ? `<div class="note" style="margin-top:4px;font-style:italic;">"${escapeHtml(d.donor_message)}"</div>`
+                : '';
+              
+              return `
+                <div style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1);">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                    <strong>${escapeHtml(name)}</strong>
+                    <span style="color:rgba(255,255,255,0.7);font-size:0.9em;">${amount}</span>
+                  </div>
+                  ${message}
+                  ${time ? `<div class="note" style="margin-top:4px;font-size:0.85em;">${time}</div>` : ''}
+                </div>
+              `;
+            }).join('');
+
+            donationsEl.innerHTML = html || '<p class="note">No donations to display.</p>';
+          } catch (e) {
+            donationsEl.innerHTML = '<p class="note">Could not load donations.</p>';
+          }
+        }
+
+        function escapeHtml(text) {
+          const div = document.createElement('div');
+          div.textContent = text;
+          return div.innerHTML;
+        }
+
+        loadDonations();
+        setInterval(loadDonations, 30000); // Refresh every 30 seconds
       })();
     </script>
   </body>
