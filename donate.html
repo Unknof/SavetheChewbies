@@ -77,7 +77,7 @@
           <li data-threshold="1404" data-index="5"><strong>€1404 — Mecha Baby Chew (skin):</strong> A Mecha Baby Chew skin (like Mecha Chew, but for Baby Chew).</li>
         </ul>
         <p class="note">
-          We show the next milestone as soon as the previous one is met. The final milestone is always visible as a teaser.
+          All milestones are listed below with their full descriptions.
         </p>
         <p class="note">
           I’ll be streaming the implementation of these features (Discord, and bilibili if possible). Exact stream times will be posted on the site.
@@ -160,32 +160,11 @@
           const items = getItems();
           if (items.length === 0) return;
 
-          const thresholds = items
-            .map((li) => ({
-              li,
-              idx: Number(li.getAttribute('data-index')),
-              t: Number(li.getAttribute('data-threshold')),
-            }))
-            .filter((x) => Number.isFinite(x.idx) && Number.isFinite(x.t))
-            .sort((a, b) => a.idx - b.idx);
-
-          // Determine highest unlocked by comparing totals to thresholds.
-          let unlocked = 0;
-          for (const m of thresholds) {
-            if (total >= m.t) unlocked = Math.max(unlocked, m.idx);
-          }
-
-          const next = Math.min(unlocked + 1, thresholds.length);
-          const last = thresholds.length;
-
-          const nextMilestone = thresholds.find((m) => m.idx === next);
-          const remaining = nextMilestone ? Math.max(0, nextMilestone.t - total) : 0;
-
-          for (const m of thresholds) {
-            const shouldShow = (m.idx <= unlocked) || (m.idx === next) || (m.idx === last);
-            m.li.style.display = shouldShow ? '' : 'none';
-            m.li.classList.toggle('milestone-locked', m.idx > unlocked);
-            m.li.classList.toggle('milestone-unlocked', m.idx <= unlocked);
+          // Always show all items and clear any locked/unlocked styling.
+          for (const li of items) {
+            li.style.display = '';
+            li.classList.remove('milestone-locked');
+            li.classList.remove('milestone-unlocked');
           }
 
           const hasGoal = typeof goal === 'number' && Number.isFinite(goal) && goal > 0;
@@ -193,11 +172,7 @@
             ? `Raised: ${fmtCurrency(Math.floor(total), currency)} of ${fmtCurrency(Math.floor(goal), currency)}`
             : `Current total: ${fmtCurrency(Math.floor(total), currency)}`;
 
-          if (unlocked >= last) {
-            statusEl.textContent = `All milestones unlocked! ${raisedText}`;
-          } else {
-            statusEl.textContent = `${raisedText} • ${fmtCurrency(Math.ceil(remaining), currency)} to next milestone`;
-          }
+          statusEl.textContent = raisedText;
         }
 
         function showAll() {
