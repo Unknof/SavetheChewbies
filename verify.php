@@ -52,6 +52,8 @@ function h(string $s): string
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Verify donation • Save The Chewbies</title>
+    <link rel="icon" href="./assets/icon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="./assets/icon.png" />
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body>
