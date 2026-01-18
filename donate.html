@@ -3,15 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Donate • Save The Chewbies</title>
-    <meta name="description" content="Donate to Save the Children via Tiltify and support the Baby Chew fundraiser." />
+    <title data-i18n="donate.meta.title">Donate • Save The Chewbies</title>
+    <meta
+      name="description"
+      content="Donate to Save the Children via Tiltify and support the Baby Chew fundraiser."
+      data-i18n-attr-content="donate.meta.description"
+    />
 
-    <meta property="og:title" content="Donate • Save The Chewbies" />
-    <meta property="og:description" content="Donate to Save the Children via Tiltify and support the Baby Chew fundraiser." />
+    <meta property="og:title" content="Donate • Save The Chewbies" data-i18n-attr-content="donate.meta.title" />
+    <meta
+      property="og:description"
+      content="Donate to Save the Children via Tiltify and support the Baby Chew fundraiser."
+      data-i18n-attr-content="donate.meta.description"
+    />
     <meta property="og:image" content="./assets/icon.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Donate • Save The Chewbies" />
-    <meta name="twitter:description" content="Donate to Save the Children via Tiltify and support the Baby Chew fundraiser." />
+    <meta name="twitter:title" content="Donate • Save The Chewbies" data-i18n-attr-content="donate.meta.title" />
+    <meta
+      name="twitter:description"
+      content="Donate to Save the Children via Tiltify and support the Baby Chew fundraiser."
+      data-i18n-attr-content="donate.meta.description"
+    />
     <meta name="twitter:image" content="./assets/icon.png" />
 
     <link rel="icon" href="./assets/icon.png" type="image/png" />
@@ -20,101 +32,108 @@
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main" data-i18n="common.skipToContent">Skip to content</a>
 
     <header class="site-header">
       <div class="container header-inner">
         <div class="brand">
           <div class="brand-mark" aria-hidden="true"><img src="./assets/icon.png" alt="" width="42" height="42" /></div>
           <div class="brand-text">
-            <div class="brand-name">Save The Chewbies</div>
-            <div class="brand-tagline">Donate to Save the Children</div>
+            <div class="brand-name" data-i18n="site.name">Save The Chewbies</div>
+            <div class="brand-tagline" data-i18n="donate.brandTagline">Donate to Save the Children</div>
           </div>
         </div>
 
         <nav class="nav" aria-label="Primary">
-          <a class="nav-link" href="./index.html">Home</a>
-          <a class="nav-link" href="./chew-story.html">The True Story</a>
-          <a class="nav-link" href="./gallery.html">Gallery</a>
-          <a class="nav-link nav-cta" href="./donate.html" aria-current="page">Donate</a>
-          <a class="nav-link" href="./privacy.html">Privacy</a>
-          <a class="nav-link" href="./privacy.html#contact">Contact</a>
+          <a class="nav-link" href="./index.html" data-i18n="nav.home">Home</a>
+          <a class="nav-link" href="./chew-story.html" data-i18n="nav.story">The True Story</a>
+          <a class="nav-link" href="./gallery.html" data-i18n="nav.gallery">Gallery</a>
+          <a class="nav-link nav-cta" href="./donate.html" aria-current="page" data-i18n="nav.donate">Donate</a>
+          <a class="nav-link" href="./privacy.html" data-i18n="nav.privacy">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact" data-i18n="nav.contact">Contact</a>
         </nav>
       </div>
     </header>
 
     <main id="main" class="container">
       <section class="page-header">
-        <h1>Donate</h1>
+        <h1 data-i18n="donate.title">Donate</h1>
         <p class="lead">
-          Help Save the Children and unlock in-game rewards!
+          <span data-i18n="donate.lead">Help Save the Children and unlock in-game rewards!</span>
         </p>
       </section>
 
       <section class="card">
-        <h2>Donate to Save the Children</h2>
+        <h2 data-i18n="donate.section.title">Donate to Save the Children</h2>
         <p>
-          Donations go directly through Tiltify's secure platform. Your contribution helps Save the Children and unlocks milestones below.
+          <span data-i18n="donate.section.body">Donations go directly through Tiltify's secure platform. Your contribution helps Save the Children and unlocks milestones below.</span>
         </p>
         <div class="actions">
-          <a class="button" href="https://tiltify.com/@savethecewbies/savethechewbies-a-fundraiser-for-save-the-children" target="_blank" rel="noopener noreferrer">Donate on Tiltify</a>
+          <a
+            class="button"
+            href="https://tiltify.com/@savethecewbies/savethechewbies-a-fundraiser-for-save-the-children"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="donate.section.cta"
+          >Donate on Tiltify</a>
         </div>
         <p class="note">
-          This site does not handle payment information. Donations are processed securely by Tiltify.
+          <span data-i18n="donate.section.note">This site does not handle payment information. Donations are processed securely by Tiltify.</span>
         </p>
       </section>
 
       <section class="card">
-        <h2 id="incentives">Incentives (milestones)</h2>
+        <h2 id="incentives" data-i18n="donate.incentives.title">Incentives (milestones)</h2>
         <p>
-          To give donors extra motivation, we’re building five incentives tied to the Baby Chew in-game pet.
-          Once the incentive list is finalized on Tiltify, it will be mirrored here.
+          <span data-i18n="donate.incentives.body">To give donors extra motivation, we’re building five incentives tied to the Baby Chew in-game pet. Once the incentive list is finalized on Tiltify, it will be mirrored here.</span>
         </p>
-        <p class="note" id="milestone-status">Milestones unlock in order. Loading current total…</p>
+        <p class="note" id="milestone-status" data-i18n="donate.incentives.loading">Milestones unlock in order. Loading current total…</p>
         <ul class="list" id="milestone-list">
-          <li data-threshold="351" data-index="1"><strong>€351 — Tantrum (knockback reaction):</strong> When Baby Chew gets knocked back, the baby chewbies throw a little tantrum (harmless / cosmetic).</li>
-          <li data-threshold="702" data-index="2"><strong>€702 — Playful sparring:</strong> Baby chewbies can have tiny harmless fights with other players’ baby chewbies.</li>
-          <li data-threshold="702" data-index="3"><strong>€702 — Ice caves (build process):</strong> Baby Chew occasionally builds ice caves with a fun build animation.</li>
-          <li data-threshold="1053" data-index="4"><strong>€1053 — Nydus teleport (fashionable):</strong> Baby Chew and the baby chewbies teleport to the current hero using the Nydus.</li>
-          <li data-threshold="1404" data-index="5"><strong>€1404 — Mecha Baby Chew (skin):</strong> A Mecha Baby Chew skin (like Mecha Chew, but for Baby Chew).</li>
+          <li data-threshold="351" data-index="1" data-i18n-html="donate.m1.liHtml"><strong>€351 — Tantrum (knockback reaction):</strong> When Baby Chew gets knocked back, the baby chewbies throw a little tantrum (harmless / cosmetic).</li>
+          <li data-threshold="702" data-index="2" data-i18n-html="donate.m2.liHtml"><strong>€702 — Playful sparring:</strong> Baby chewbies can have tiny harmless fights with other players’ baby chewbies.</li>
+          <li data-threshold="702" data-index="3" data-i18n-html="donate.m3.liHtml"><strong>€702 — Ice caves (build process):</strong> Baby Chew occasionally builds ice caves with a fun build animation.</li>
+          <li data-threshold="1053" data-index="4" data-i18n-html="donate.m4.liHtml"><strong>€1053 — Nydus teleport (fashionable):</strong> Baby Chew and the baby chewbies teleport to the current hero using the Nydus.</li>
+          <li data-threshold="1404" data-index="5" data-i18n-html="donate.m5.liHtml"><strong>€1404 — Mecha Baby Chew (skin):</strong> A Mecha Baby Chew skin (like Mecha Chew, but for Baby Chew).</li>
         </ul>
         <p class="note">
-          All milestones are listed here with their full descriptions.
+          <span data-i18n="donate.incentives.note1">All milestones are listed here with their full descriptions.</span>
         </p>
         <p class="note">
-          I’ll be streaming the implementation of these features (Discord, and bilibili if possible). Exact stream times will be posted on the site.
+          <span data-i18n="donate.incentives.note2">I’ll be streaming the implementation of these features (Discord, and bilibili if possible). Exact stream times will be posted on the site.</span>
         </p>
         <p class="note">
-          Why €351? It comes from a Kerrigan Survival tournament on January 10–11 where players spawned a total of 351 baby chewbies.
+          <span data-i18n="donate.incentives.note3">Why €351? It comes from a Kerrigan Survival tournament on January 10–11 where players spawned a total of 351 baby chewbies.</span>
         </p>
         <figure style="margin:14px 0 0;">
           <img
             src="./assets/chewbieCountProof/Game1.jpg"
             alt="Tournament proof screenshot: Game 1"
+            data-i18n-attr-alt="img.proof.game1Alt"
             style="max-width:100%;height:auto;border-radius:12px;display:block;"
             loading="lazy"
           />
-          <figcaption class="note" style="margin-top:8px;">Proof screenshot (Game 1)</figcaption>
+          <figcaption class="note" style="margin-top:8px;" data-i18n="index.card.proof.game1">Proof screenshot (Game 1)</figcaption>
         </figure>
 
         <figure style="margin:14px 0 0;">
           <img
             src="./assets/chewbieCountProof/Game10.jpg"
             alt="Tournament proof screenshot: Game 10"
+            data-i18n-attr-alt="img.proof.game10Alt"
             style="max-width:100%;height:auto;border-radius:12px;display:block;"
             loading="lazy"
           />
-          <figcaption class="note" style="margin-top:8px;">Proof screenshot (Game 10)</figcaption>
+          <figcaption class="note" style="margin-top:8px;" data-i18n="index.card.proof.game10">Proof screenshot (Game 10)</figcaption>
         </figure>
         <p class="note">
-          Creator pledge (proof of concept): I'll personally donate €10 for every Baby Chew used in the tournament (6 total → €60) to help kick things off.
+          <span data-i18n="donate.incentives.creatorPledge">Creator pledge (proof of concept): I'll personally donate €10 for every Baby Chew used in the tournament (6 total → €60) to help kick things off.</span>
         </p>
       </section>
 
       <section class="card" id="privacy">
-        <h2>Privacy & contact</h2>
+        <h2 data-i18n="donate.privacy.title">Privacy & contact</h2>
         <p>
-          See <a href="./privacy.html">Privacy</a> for data-retention notes and <a href="./privacy.html#contact">Contact</a>.
+          <span data-i18n-html="donate.privacy.bodyHtml">See <a href="./privacy.html">Privacy</a> for data-retention notes and <a href="./privacy.html#contact">Contact</a>.</span>
         </p>
       </section>
 
@@ -123,21 +142,28 @@
     <footer class="site-footer">
       <div class="container footer-inner">
         <div>
-          <div class="footer-title">Save The Chewbies</div>
+          <div class="footer-title" data-i18n="site.name">Save The Chewbies</div>
           <div class="footer-sub">© <span id="year"></span></div>
         </div>
         <div class="footer-links">
-          <a class="nav-link" href="./privacy.html">Privacy</a>
-          <a class="nav-link" href="./privacy.html#contact">Contact</a>
-          <a class="nav-link" href="./acknowledgements.html">Acknowledgements</a>
+          <a class="nav-link" href="./privacy.html" data-i18n="footer.privacy">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact" data-i18n="footer.contact">Contact</a>
+          <a class="nav-link" href="./acknowledgements.html" data-i18n="footer.ack">Acknowledgements</a>
         </div>
       </div>
     </footer>
 
+    <script src="./assets/i18n.js"></script>
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
 
       (function () {
+        const I18N = window.STC_I18N;
+        const t = I18N && typeof I18N.t === 'function' ? I18N.t : (k) => k;
+        const intlLocale = I18N && typeof I18N.getIntlLocale === 'function' ? I18N.getIntlLocale() : undefined;
+        const translateMilestoneName =
+          I18N && typeof I18N.translateMilestoneName === 'function' ? I18N.translateMilestoneName : (name) => name;
+
         const statusEl = document.getElementById('milestone-status');
         const listEl = document.getElementById('milestone-list');
         if (!statusEl || !listEl) return;
@@ -146,28 +172,28 @@
         const fallbackMilestones = [
           {
             amount: 351,
-            name: 'Tantrum (knockback reaction)',
-            description: 'When Baby Chew gets knocked back, the baby chewbies throw a little tantrum (harmless / cosmetic).',
+            name: t('donate.m1.name'),
+            description: t('donate.m1.desc'),
           },
           {
             amount: 702,
-            name: 'Playful sparring',
-            description: 'Baby chewbies can have tiny harmless fights with other players’ baby chewbies.',
+            name: t('donate.m2.name'),
+            description: t('donate.m2.desc'),
           },
           {
             amount: 702,
-            name: 'Ice caves (build process)',
-            description: 'Baby Chew occasionally builds ice caves with a fun build animation.',
+            name: t('donate.m3.name'),
+            description: t('donate.m3.desc'),
           },
           {
             amount: 1053,
-            name: 'Nydus teleport (fashionable)',
-            description: 'Baby Chew and the baby chewbies teleport to the current hero using the Nydus.',
+            name: t('donate.m4.name'),
+            description: t('donate.m4.desc'),
           },
           {
             amount: 1404,
-            name: 'Mecha Baby Chew (skin)',
-            description: 'A Mecha Baby Chew skin (like Mecha Chew, but for Baby Chew).',
+            name: t('donate.m5.name'),
+            description: t('donate.m5.desc'),
           },
         ];
 
@@ -177,7 +203,7 @@
 
         function fmtCurrency(value, currency) {
           try {
-            return new Intl.NumberFormat('de-DE', {
+            return new Intl.NumberFormat(intlLocale, {
               style: 'currency',
               currency: currency || 'EUR',
               maximumFractionDigits: 0,
@@ -200,8 +226,13 @@
 
           const hasGoal = typeof goal === 'number' && Number.isFinite(goal) && goal > 0;
           const raisedText = hasGoal
-            ? `Raised: ${fmtCurrency(Math.floor(total), currency)} of ${fmtCurrency(Math.floor(goal), currency)}`
-            : `Current total: ${fmtCurrency(Math.floor(total), currency)}`;
+            ? t('donate.incentives.statusRaisedOf', {
+              total: fmtCurrency(Math.floor(total), currency),
+              goal: fmtCurrency(Math.floor(goal), currency),
+            })
+            : t('donate.incentives.statusCurrentTotal', {
+              total: fmtCurrency(Math.floor(total), currency),
+            });
 
           statusEl.textContent = raisedText;
         }
@@ -245,7 +276,7 @@
                 }
 
                 return {
-                  name,
+                  name: translateMilestoneName(name),
                   description: resolvedDescription,
                   amount,
                 };
@@ -278,7 +309,7 @@
             const r = await fetch('./milestones.php', { cache: 'no-store' });
             const data = await r.json();
             if (!data || data.ok !== true || typeof data.total !== 'number') {
-              statusEl.textContent = 'Milestone total unavailable right now. Showing full list.';
+              statusEl.textContent = t('donate.incentives.totalUnavailable');
               showAll();
               return;
             }
@@ -288,7 +319,7 @@
               typeof data.goal === 'number' ? data.goal : NaN
             );
           } catch {
-            statusEl.textContent = 'Milestone total unavailable right now. Showing full list.';
+            statusEl.textContent = t('donate.incentives.totalUnavailable');
             showAll();
           }
         }

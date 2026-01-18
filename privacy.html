@@ -3,15 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Privacy & Contact • Save The Chewbies</title>
-    <meta name="description" content="Privacy notes and contact information for Save The Chewbies." />
+    <title data-i18n="privacy.meta.title">Privacy & Contact • Save The Chewbies</title>
+    <meta
+      name="description"
+      content="Privacy notes and contact information for Save The Chewbies."
+      data-i18n-attr-content="privacy.meta.description"
+    />
 
-    <meta property="og:title" content="Privacy & Contact • Save The Chewbies" />
-    <meta property="og:description" content="Privacy notes and contact information for Save The Chewbies." />
+    <meta property="og:title" content="Privacy & Contact • Save The Chewbies" data-i18n-attr-content="privacy.meta.title" />
+    <meta
+      property="og:description"
+      content="Privacy notes and contact information for Save The Chewbies."
+      data-i18n-attr-content="privacy.meta.description"
+    />
     <meta property="og:image" content="./assets/icon.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Privacy & Contact • Save The Chewbies" />
-    <meta name="twitter:description" content="Privacy notes and contact information for Save The Chewbies." />
+    <meta name="twitter:title" content="Privacy & Contact • Save The Chewbies" data-i18n-attr-content="privacy.meta.title" />
+    <meta
+      name="twitter:description"
+      content="Privacy notes and contact information for Save The Chewbies."
+      data-i18n-attr-content="privacy.meta.description"
+    />
     <meta name="twitter:image" content="./assets/icon.png" />
 
     <link rel="icon" href="./assets/icon.png" type="image/png" />
@@ -20,57 +32,57 @@
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main" data-i18n="common.skipToContent">Skip to content</a>
 
     <header class="site-header">
       <div class="container header-inner">
         <div class="brand">
           <div class="brand-mark" aria-hidden="true"><img src="./assets/icon.png" alt="" width="42" height="42" /></div>
           <div class="brand-text">
-            <div class="brand-name">Save The Chewbies</div>
-            <div class="brand-tagline">Privacy & contact</div>
+            <div class="brand-name" data-i18n="site.name">Save The Chewbies</div>
+            <div class="brand-tagline" data-i18n="privacy.brandTagline">Privacy & contact</div>
           </div>
         </div>
 
         <nav class="nav" aria-label="Primary">
-          <a class="nav-link" href="./index.html">Home</a>
-          <a class="nav-link" href="./chew-story.html">The True Story</a>
-          <a class="nav-link" href="./gallery.html">Gallery</a>
-          <a class="nav-link nav-cta" href="./donate.html">Donate</a>
-          <a class="nav-link" href="./privacy.html" aria-current="page">Privacy</a>
-          <a class="nav-link" href="./privacy.html#contact">Contact</a>
+          <a class="nav-link" href="./index.html" data-i18n="nav.home">Home</a>
+          <a class="nav-link" href="./chew-story.html" data-i18n="nav.story">The True Story</a>
+          <a class="nav-link" href="./gallery.html" data-i18n="nav.gallery">Gallery</a>
+          <a class="nav-link nav-cta" href="./donate.html" data-i18n="nav.donate">Donate</a>
+          <a class="nav-link" href="./privacy.html" aria-current="page" data-i18n="nav.privacy">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact" data-i18n="nav.contact">Contact</a>
         </nav>
       </div>
     </header>
 
     <main id="main" class="container">
       <section class="page-header">
-        <h1>Privacy & contact</h1>
-        <p class="lead">This is an early version. These notes will be refined as the project grows.</p>
+        <h1 data-i18n="privacy.title">Privacy & contact</h1>
+        <p class="lead"><span data-i18n="privacy.lead">This is an early version. These notes will be refined as the project grows.</span></p>
       </section>
 
       <section class="card" id="privacy">
-        <h2>Privacy</h2>
+        <h2 data-i18n="privacy.section.title">Privacy</h2>
         <p>
-          This site is a simple fundraising hub. We keep data collection minimal.
+          <span data-i18n="privacy.section.body">This site is a simple fundraising hub. We keep data collection minimal.</span>
         </p>
-        <h3 style="margin:18px 0 8px;">What we store</h3>
+        <h3 style="margin:18px 0 8px;" data-i18n="privacy.section.whatStore">What we store</h3>
         <ul class="list">
-          <li><strong>Cookies & tracking:</strong> No tracking cookies or ad pixels are used. The cookie banner only stores your dismissal preference in your browser (via local storage).</li>
-          <li><strong>Donation data:</strong> We may receive webhook notifications from Tiltify about donations to display the total raised and recent donors.</li>
+          <li data-i18n-html="privacy.section.cookiesHtml"><strong>Cookies & tracking:</strong> No tracking cookies or ad pixels are used. The cookie banner only stores your dismissal preference in your browser (via local storage).</li>
+          <li data-i18n-html="privacy.section.donationsHtml"><strong>Donation data:</strong> We may receive webhook notifications from Tiltify about donations to display the total raised and recent donors.</li>
         </ul>
-        <p class="note">We don't handle payment information. Donations happen on Tiltify's secure platform.</p>
+        <p class="note" data-i18n="privacy.section.note">We don't handle payment information. Donations happen on Tiltify's secure platform.</p>
 
-        <h3 style="margin:18px 0 8px;">Retention</h3>
+        <h3 style="margin:18px 0 8px;" data-i18n="privacy.section.retention">Retention</h3>
         <p>
-          Donation totals and recent donor information are kept to display on the site. Personal data is minimal.
+          <span data-i18n="privacy.section.retentionBody">Donation totals and recent donor information are kept to display on the site. Personal data is minimal.</span>
         </p>
       </section>
 
       <section class="card" id="contact">
-        <h2>Contact</h2>
+        <h2 data-i18n="privacy.contact.title">Contact</h2>
         <p>
-          Email: <a href="mailto:savethechewbies@protonmail.com">savethechewbies@protonmail.com</a>
+          <span data-i18n="privacy.contact.emailLabel">Email:</span> <a href="mailto:savethechewbies@protonmail.com">savethechewbies@protonmail.com</a>
         </p>
       </section>
     </main>
@@ -78,17 +90,18 @@
     <footer class="site-footer">
       <div class="container footer-inner">
         <div>
-          <div class="footer-title">Save The Chewbies</div>
+          <div class="footer-title" data-i18n="site.name">Save The Chewbies</div>
           <div class="footer-sub">© <span id="year"></span></div>
         </div>
         <div class="footer-links">
-          <a class="nav-link" href="./privacy.html">Privacy</a>
-          <a class="nav-link" href="./privacy.html#contact">Contact</a>
-          <a class="nav-link" href="./acknowledgements.html">Acknowledgements</a>
+          <a class="nav-link" href="./privacy.html" data-i18n="footer.privacy">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact" data-i18n="footer.contact">Contact</a>
+          <a class="nav-link" href="./acknowledgements.html" data-i18n="footer.ack">Acknowledgements</a>
         </div>
       </div>
     </footer>
 
+    <script src="./assets/i18n.js"></script>
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
     </script>

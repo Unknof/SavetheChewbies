@@ -3,15 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Save The Chewbies</title>
-    <meta name="description" content="Donate to Save the Children via Tiltify, with donation incentives that update live." />
+    <title data-i18n="index.meta.title">Save The Chewbies</title>
+    <meta
+      name="description"
+      content="Donate to Save the Children via Tiltify, with donation incentives that update live."
+      data-i18n-attr-content="index.meta.description"
+    />
 
-    <meta property="og:title" content="Save The Chewbies" />
-    <meta property="og:description" content="Donate to Save the Children via Tiltify, with donation incentives that update live." />
+    <meta property="og:title" content="Save The Chewbies" data-i18n-attr-content="index.meta.title" />
+    <meta
+      property="og:description"
+      content="Donate to Save the Children via Tiltify, with donation incentives that update live."
+      data-i18n-attr-content="index.meta.description"
+    />
     <meta property="og:image" content="./assets/icon.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Save The Chewbies" />
-    <meta name="twitter:description" content="Donate to Save the Children via Tiltify, with donation incentives that update live." />
+    <meta name="twitter:title" content="Save The Chewbies" data-i18n-attr-content="index.meta.title" />
+    <meta
+      name="twitter:description"
+      content="Donate to Save the Children via Tiltify, with donation incentives that update live."
+      data-i18n-attr-content="index.meta.description"
+    />
     <meta name="twitter:image" content="./assets/icon.png" />
 
     <link rel="icon" href="./assets/icon.png" type="image/png" />
@@ -20,25 +32,25 @@
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main" data-i18n="common.skipToContent">Skip to content</a>
 
     <header class="site-header">
       <div class="container header-inner">
         <div class="brand">
           <div class="brand-mark" aria-hidden="true"><img src="./assets/icon.png" alt="" width="42" height="42" /></div>
           <div class="brand-text">
-            <div class="brand-name">Save The Chewbies</div>
-            <div class="brand-tagline">Donate to Save the Children</div>
+            <div class="brand-name" data-i18n="site.name">Save The Chewbies</div>
+            <div class="brand-tagline" data-i18n="index.brandTagline">Donate to Save the Children</div>
           </div>
         </div>
 
         <nav class="nav" aria-label="Primary">
-          <a class="nav-link" href="./index.html" aria-current="page">Home</a>
-          <a class="nav-link" href="./chew-story.html">The True Story</a>
-          <a class="nav-link" href="./gallery.html">Gallery</a>
-          <a class="nav-link nav-cta" href="./donate.html">Donate</a>
-          <a class="nav-link" href="./privacy.html">Privacy</a>
-          <a class="nav-link" href="./privacy.html#contact">Contact</a>
+          <a class="nav-link" href="./index.html" aria-current="page" data-i18n="nav.home">Home</a>
+          <a class="nav-link" href="./chew-story.html" data-i18n="nav.story">The True Story</a>
+          <a class="nav-link" href="./gallery.html" data-i18n="nav.gallery">Gallery</a>
+          <a class="nav-link nav-cta" href="./donate.html" data-i18n="nav.donate">Donate</a>
+          <a class="nav-link" href="./privacy.html" data-i18n="nav.privacy">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact" data-i18n="nav.contact">Contact</a>
         </nav>
       </div>
     </header>
@@ -46,99 +58,99 @@
     <main id="main" class="container">
       <section class="hero">
         <div class="hero-copy">
-          <h1>Make your donation count.</h1>
-          <p class="lead">
+          <h1 data-i18n="index.hero.title">Make your donation count.</h1>
+          <p class="lead" data-i18n-html="index.hero.leadHtml">
             This site is a simple hub to help you donate to <strong>Save the Children</strong> through <strong>Tiltify</strong>.
           </p>
           <div class="actions">
-            <a class="button" href="./donate.html">Donate now</a>
-            <a class="button button-secondary" href="./donate.html#incentives">See milestones</a>
+            <a class="button" href="./donate.html" data-i18n="index.hero.donateNow">Donate now</a>
+            <a class="button button-secondary" href="./donate.html#incentives" data-i18n="index.hero.seeMilestones">See milestones</a>
           </div>
         </div>
 
         <div class="hero-media" aria-label="How it works">
-          <h2 style="margin:0 0 10px;font-size:1.1rem;">How it works</h2>
+          <h2 style="margin:0 0 10px;font-size:1.1rem;" data-i18n="index.howItWorks">How it works</h2>
           <ol class="list" style="margin:0;padding-left:18px;">
-            <li>Click <strong>Donate now</strong>.</li>
-            <li>Donate on Tiltify to <strong>Save the Children</strong>.</li>
-            <li>Track progress on the milestones below.</li>
+            <li data-i18n-html="index.howItWorks.1Html">Click <strong>Donate now</strong>.</li>
+            <li data-i18n-html="index.howItWorks.2Html">Donate on Tiltify to <strong>Save the Children</strong>.</li>
+            <li data-i18n="index.howItWorks.3">Track progress on the milestones below.</li>
           </ol>
           <p class="note" style="margin:10px 0 0;">
-            This site does not handle payment information.
+            <span data-i18n="index.howItWorks.note">This site does not handle payment information.</span>
           </p>
         </div>
       </section>
 
       <section class="grid">
         <article class="card">
-          <h2>Live total</h2>
+          <h2 data-i18n="index.card.liveTotal">Live total</h2>
           <div class="big-stat" id="stc-total">—</div>
-          <p class="note" id="stc-next">Loading next milestone…</p>
+          <p class="note" id="stc-next" data-i18n="index.card.nextLoading">Loading next milestone…</p>
           <div class="actions">
-            <a class="button" href="./donate.html">Donate</a>
-            <a class="button button-secondary" href="./donate.html#incentives">See milestones</a>
+            <a class="button" href="./donate.html" data-i18n="index.card.donate">Donate</a>
+            <a class="button button-secondary" href="./donate.html#incentives" data-i18n="index.hero.seeMilestones">See milestones</a>
           </div>
         </article>
 
         <article class="card">
-          <h2>Save the Children</h2>
+          <h2 data-i18n="index.card.saveTheChildren">Save the Children</h2>
           <p>
-            A well-known charity with a long track record. This drive is focused on Save the Children.
+            <span data-i18n="index.card.saveTheChildren.body">A well-known charity with a long track record. This drive is focused on Save the Children.</span>
           </p>
-          <a class="text-link" href="./donate.html">Donate via Tiltify →</a>
+          <a class="text-link" href="./donate.html" data-i18n="index.card.saveTheChildren.link">Donate via Tiltify →</a>
         </article>
 
         <article class="card">
-          <h2>Milestones & Incentives</h2>
+          <h2 data-i18n="index.card.milestones">Milestones & Incentives</h2>
           <p>
-            Track donation milestones to unlock special Baby Chew features and cosmetics in-game.
+            <span data-i18n="index.card.milestones.body">Track donation milestones to unlock special Baby Chew features and cosmetics in-game.</span>
           </p>
-          <a class="text-link" href="./donate.html#incentives">View milestones →</a>
+          <a class="text-link" href="./donate.html#incentives" data-i18n="index.card.milestones.link">View milestones →</a>
         </article>
 
         <article class="card">
-          <h2>Incentives</h2>
+          <h2 data-i18n="index.card.incentives">Incentives</h2>
           <p>
-            We’re building five donation incentives tied to the Baby Chew in-game pet.
-            They’ll be shown on Tiltify and mirrored here.
+            <span data-i18n="index.card.incentives.body">We’re building five donation incentives tied to the Baby Chew in-game pet. They’ll be shown on Tiltify and mirrored here.</span>
           </p>
-          <a class="text-link" href="./donate.html#incentives">See milestones →</a>
+          <a class="text-link" href="./donate.html#incentives" data-i18n="index.card.incentives.link">See milestones →</a>
           <p class="note">
-            I’ll also stream the implementation (Discord, and bilibili if possible). Stream times will be posted here.
+            <span data-i18n="index.card.incentives.note">I’ll also stream the implementation (Discord, and bilibili if possible). Stream times will be posted here.</span>
           </p>
         </article>
 
         <article class="card">
-          <h2>Why €351?</h2>
+          <h2 data-i18n="index.card.why351">Why €351?</h2>
           <p>
-            The incentive amounts are based on a Kerrigan Survival tournament on January 10–11,
-            where players spawned a total of 351 baby chewbies.
+            <span data-i18n="index.card.why351.body">The incentive amounts are based on a Kerrigan Survival tournament on January 10–11, where players spawned a total of 351 baby chewbies.</span>
           </p>
           <figure style="margin:14px 0 0;">
             <img
               src="./assets/chewbieCountProof/Game1.jpg"
               alt="Tournament proof screenshot: Game 1"
+              data-i18n-attr-alt="img.proof.game1Alt"
               style="max-width:100%;height:auto;border-radius:12px;display:block;"
               loading="lazy"
             />
-            <figcaption class="note" style="margin-top:8px;">Proof screenshot (Game 1)</figcaption>
+            <figcaption class="note" style="margin-top:8px;" data-i18n="index.card.proof.game1">Proof screenshot (Game 1)</figcaption>
           </figure>
 
           <figure style="margin:14px 0 0;">
             <img
               src="./assets/chewbieCountProof/Game10.jpg"
               alt="Tournament proof screenshot: Game 10"
+              data-i18n-attr-alt="img.proof.game10Alt"
               style="max-width:100%;height:auto;border-radius:12px;display:block;"
               loading="lazy"
             />
-            <figcaption class="note" style="margin-top:8px;">Proof screenshot (Game 10)</figcaption>
+            <figcaption class="note" style="margin-top:8px;" data-i18n="index.card.proof.game10">Proof screenshot (Game 10)</figcaption>
           </figure>
         </article>
 
         <article class="card">
-          <h2>Recent Donations</h2>
+          <h2 data-i18n="index.card.recentDonations">Recent Donations</h2>
           <div id="donations-list">
-            <p class="note">Loading donations...</p>
+            <p class="note" data-i18n="index.donations.loading">Loading donations...</p>
           </div>
         </article>
       </section>
@@ -147,21 +159,28 @@
     <footer class="site-footer">
       <div class="container footer-inner">
         <div>
-          <div class="footer-title">Save The Chewbies</div>
+          <div class="footer-title" data-i18n="site.name">Save The Chewbies</div>
           <div class="footer-sub">© <span id="year"></span></div>
         </div>
         <div class="footer-links">
-          <a class="nav-link" href="./privacy.html">Privacy</a>
-          <a class="nav-link" href="./privacy.html#contact">Contact</a>
-          <a class="nav-link" href="./acknowledgements.html">Acknowledgements</a>
+          <a class="nav-link" href="./privacy.html" data-i18n="footer.privacy">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact" data-i18n="footer.contact">Contact</a>
+          <a class="nav-link" href="./acknowledgements.html" data-i18n="footer.ack">Acknowledgements</a>
         </div>
       </div>
     </footer>
 
+    <script src="./assets/i18n.js"></script>
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
 
       (function () {
+        const I18N = window.STC_I18N;
+        const t = I18N && typeof I18N.t === 'function' ? I18N.t : (k) => k;
+        const intlLocale = I18N && typeof I18N.getIntlLocale === 'function' ? I18N.getIntlLocale() : undefined;
+        const translateMilestoneName =
+          I18N && typeof I18N.translateMilestoneName === 'function' ? I18N.translateMilestoneName : (name) => name;
+
         const totalEl = document.getElementById('stc-total');
         const nextEl = document.getElementById('stc-next');
         if (!totalEl || !nextEl) return;
@@ -176,7 +195,7 @@
 
         function fmtCurrency(value, currency) {
           try {
-            return new Intl.NumberFormat('de-DE', {
+            return new Intl.NumberFormat(intlLocale, {
               style: 'currency',
               currency: currency || 'EUR',
               maximumFractionDigits: 0,
@@ -188,19 +207,26 @@
 
         function render(total, currency, goal) {
           if (typeof goal === 'number' && Number.isFinite(goal) && goal > 0) {
-            totalEl.textContent = `${fmtCurrency(Math.floor(total), currency)} raised of ${fmtCurrency(Math.floor(goal), currency)}`;
+            totalEl.textContent = t('index.total.raisedOf', {
+              total: fmtCurrency(Math.floor(total), currency),
+              goal: fmtCurrency(Math.floor(goal), currency),
+            });
           } else {
-            totalEl.textContent = `${fmtCurrency(Math.floor(total), currency)} raised`;
+            totalEl.textContent = t('index.total.raised', { total: fmtCurrency(Math.floor(total), currency) });
           }
 
           const next = milestones.find((m) => total < m.t);
           if (!next) {
-            nextEl.textContent = 'All milestones unlocked. Thank you!';
+            nextEl.textContent = t('index.total.allUnlocked');
             return;
           }
 
           const remaining = Math.max(0, next.t - total);
-          nextEl.textContent = `${fmtCurrency(Math.ceil(remaining), currency)} to next milestone: ${fmtCurrency(next.t, currency)} — ${next.name}`;
+          nextEl.textContent = t('index.total.next', {
+            remaining: fmtCurrency(Math.ceil(remaining), currency),
+            target: fmtCurrency(next.t, currency),
+            name: translateMilestoneName(next.name),
+          });
         }
 
         async function loadMilestonesFromTiltify() {
@@ -232,8 +258,8 @@
             const r = await fetch('./milestones.php', { cache: 'no-store' });
             const data = await r.json();
             if (!data || data.ok !== true || typeof data.total !== 'number') {
-              totalEl.textContent = 'Total unavailable';
-              nextEl.textContent = 'Set tiltify_campaign_id (or milestone_total_override) to enable live totals.';
+              totalEl.textContent = t('index.total.unavailable');
+              nextEl.textContent = t('index.total.enableHint');
               return;
             }
             render(
@@ -242,8 +268,8 @@
               typeof data.goal === 'number' ? data.goal : NaN
             );
           } catch {
-            totalEl.textContent = 'Total unavailable';
-            nextEl.textContent = 'Could not load current total.';
+            totalEl.textContent = t('index.total.unavailable');
+            nextEl.textContent = t('index.total.loadError');
           }
         }
 
@@ -255,12 +281,16 @@
 
       // Recent donations display
       (function () {
+        const I18N = window.STC_I18N;
+        const t = I18N && typeof I18N.t === 'function' ? I18N.t : (k) => k;
+        const intlLocale = I18N && typeof I18N.getIntlLocale === 'function' ? I18N.getIntlLocale() : undefined;
+
         const donationsEl = document.getElementById('donations-list');
         if (!donationsEl) return;
 
         function fmtCurrency(value, currency) {
           try {
-            return new Intl.NumberFormat('en-US', {
+            return new Intl.NumberFormat(intlLocale, {
               style: 'currency',
               currency: currency || 'USD',
               maximumFractionDigits: 0,
@@ -279,12 +309,12 @@
             const diffHours = Math.floor(diffMs / 3600000);
             const diffDays = Math.floor(diffMs / 86400000);
 
-            if (diffMins < 1) return 'just now';
-            if (diffMins < 60) return `${diffMins}m ago`;
-            if (diffHours < 24) return `${diffHours}h ago`;
-            if (diffDays < 7) return `${diffDays}d ago`;
+            if (diffMins < 1) return t('donations.justNow');
+            if (diffMins < 60) return t('donations.minsAgo', { m: diffMins });
+            if (diffHours < 24) return t('donations.hoursAgo', { h: diffHours });
+            if (diffDays < 7) return t('donations.daysAgo', { d: diffDays });
             
-            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            return date.toLocaleDateString(intlLocale, { month: 'short', day: 'numeric' });
           } catch {
             return '';
           }
@@ -296,12 +326,12 @@
             const data = await r.json();
             
             if (!data || data.ok !== true || !Array.isArray(data.donations)) {
-              donationsEl.innerHTML = '<p class="note">No donations yet.</p>';
+              donationsEl.innerHTML = `<p class="note">${t('donations.none')}</p>`;
               return;
             }
 
             if (data.donations.length === 0) {
-              donationsEl.innerHTML = '<p class="note">No donations yet. Be the first!</p>';
+              donationsEl.innerHTML = `<p class="note">${t('donations.noneFirst')}</p>`;
               return;
             }
 
@@ -309,7 +339,7 @@
             const recent = data.donations.slice(0, 10);
             
             const html = recent.map(d => {
-              const name = d.donor_name || 'Anonymous';
+              const name = d.donor_name || t('donations.anonymous');
               const amount = fmtCurrency(d.amount, d.currency);
               const time = formatTime(d.completed_at);
               const message = d.donor_message && d.donor_message.trim() !== '' 
@@ -328,9 +358,9 @@
               `;
             }).join('');
 
-            donationsEl.innerHTML = html || '<p class="note">No donations to display.</p>';
+            donationsEl.innerHTML = html || `<p class="note">${t('donations.noneDisplay')}</p>`;
           } catch (e) {
-            donationsEl.innerHTML = '<p class="note">Could not load donations.</p>';
+            donationsEl.innerHTML = `<p class="note">${t('donations.loadError')}</p>`;
           }
         }
 
