@@ -3,15 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Charities • Save The Chewbies</title>
-    <meta name="description" content="This project supports Save the Children." />
+    <title data-i18n="charities.meta.title">Charities • Save The Chewbies</title>
+    <meta
+      name="description"
+      content="This project supports Save the Children."
+      data-i18n-attr-content="charities.meta.description"
+    />
 
-    <meta property="og:title" content="Charities • Save The Chewbies" />
-    <meta property="og:description" content="This project supports Save the Children." />
+    <meta property="og:title" content="Charities • Save The Chewbies" data-i18n-attr-content="charities.meta.title" />
+    <meta
+      property="og:description"
+      content="This project supports Save the Children."
+      data-i18n-attr-content="charities.meta.description"
+    />
     <meta property="og:image" content="./assets/icon.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Charities • Save The Chewbies" />
-    <meta name="twitter:description" content="This project supports Save the Children." />
+    <meta name="twitter:title" content="Charities • Save The Chewbies" data-i18n-attr-content="charities.meta.title" />
+    <meta
+      name="twitter:description"
+      content="This project supports Save the Children."
+      data-i18n-attr-content="charities.meta.description"
+    />
     <meta name="twitter:image" content="./assets/icon.png" />
 
     <link rel="icon" href="./assets/icon.png" type="image/png" />
@@ -20,69 +32,76 @@
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main" data-i18n="common.skipToContent">Skip to content</a>
 
     <header class="site-header">
       <div class="container header-inner">
         <div class="brand">
           <div class="brand-mark" aria-hidden="true"><img src="./assets/icon.png" alt="" width="42" height="42" /></div>
           <div class="brand-text">
-            <div class="brand-name">Save The Chewbies</div>
-            <div class="brand-tagline">Donate to Save the Children</div>
+            <div class="brand-name" data-i18n="site.name">Save The Chewbies</div>
+            <div class="brand-tagline" data-i18n="index.brandTagline">Donate to Save the Children</div>
           </div>
         </div>
 
         <nav class="nav" aria-label="Primary">
+<<<<<<< HEAD
           <a class="nav-link" href="./index.html">Home</a>
           <a class="nav-link" href="./chew-story.html">The Chew Story</a>
           <a class="nav-link" href="./gallery.html">Gallery</a>
           <a class="nav-link nav-cta" href="./donate.html">Donate</a>
           <a class="nav-link" href="./privacy.html">Privacy</a>
           <a class="nav-link" href="./privacy.html#contact">Contact</a>
+=======
+          <a class="nav-link" href="./index.html" data-i18n="nav.home">Home</a>
+          <a class="nav-link" href="./chew-story.html" data-i18n="nav.story">The True Story</a>
+          <a class="nav-link" href="./gallery.html" data-i18n="nav.gallery">Gallery</a>
+          <a class="nav-link nav-cta" href="./donate.html" data-i18n="nav.donate">Donate</a>
+          <a class="nav-link" href="./privacy.html" data-i18n="nav.privacy">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact" data-i18n="nav.contact">Contact</a>
+>>>>>>> main
         </nav>
       </div>
     </header>
 
     <main id="main" class="container">
       <section class="page-header">
-        <h1>Charity</h1>
+        <h1 data-i18n="charities.title">Charity</h1>
         <p class="lead">
-          This project is currently focused on a single charity: <strong>Save the Children</strong>.
+          <span data-i18n-html="charities.leadHtml">This project is currently focused on a single charity: <strong>Save the Children</strong>.</span>
         </p>
       </section>
 
       <section class="grid">
         <article class="card charity">
-          <h2>Save the Children</h2>
+          <h2 data-i18n="charities.card.title">Save the Children</h2>
           <p>
-            A well-known charity with a long track record supporting children worldwide.
-            This project uses Tiltify to make donating simple and track progress toward milestones.
+            <span data-i18n="charities.card.body">A well-known charity with a long track record supporting children worldwide. This project uses Tiltify to make donating simple and track progress toward milestones.</span>
           </p>
           <dl class="meta">
             <div>
-              <dt>Focus</dt>
-              <dd>Children</dd>
+              <dt data-i18n="charities.card.focus">Focus</dt>
+              <dd data-i18n="charities.card.focusValue">Children</dd>
             </div>
             <div>
-              <dt>Region</dt>
-              <dd>Global</dd>
+              <dt data-i18n="charities.card.region">Region</dt>
+              <dd data-i18n="charities.card.regionValue">Global</dd>
             </div>
           </dl>
           <div class="actions">
-            <a class="button" href="./donate.html">Donate via Tiltify</a>
-            <a class="button button-secondary" href="https://www.savethechildren.org/" target="_blank" rel="noopener">Official site</a>
+            <a class="button" href="./donate.html" data-i18n="charities.card.cta1">Donate via Tiltify</a>
+            <a class="button button-secondary" href="https://www.savethechildren.org/" target="_blank" rel="noopener" data-i18n="charities.card.cta2">Official site</a>
           </div>
         </article>
       </section>
 
       <section class="callout">
-        <h2>How it works</h2>
+        <h2 data-i18n="charities.how.title">How it works</h2>
         <p>
-          Donations go through Tiltify's secure platform and contribute to unlocking milestones.
-          Track the total raised and see what incentives have been unlocked on the homepage.
+          <span data-i18n="charities.how.body">Donations go through Tiltify's secure platform and contribute to unlocking milestones. Track the total raised and see what incentives have been unlocked on the homepage.</span>
         </p>
         <p class="note">
-          Incentives are configured on Tiltify and displayed here.
+          <span data-i18n="charities.how.note">Incentives are configured on Tiltify and displayed here.</span>
         </p>
       </section>
     </main>
@@ -90,17 +109,18 @@
     <footer class="site-footer">
       <div class="container footer-inner">
         <div>
-          <div class="footer-title">Save The Chewbies</div>
+          <div class="footer-title" data-i18n="site.name">Save The Chewbies</div>
           <div class="footer-sub">© <span id="year"></span></div>
         </div>
         <div class="footer-links">
-          <a class="nav-link" href="./privacy.html">Privacy</a>
-          <a class="nav-link" href="./privacy.html#contact">Contact</a>
-          <a class="nav-link" href="./acknowledgements.html">Acknowledgements</a>
+          <a class="nav-link" href="./privacy.html" data-i18n="footer.privacy">Privacy</a>
+          <a class="nav-link" href="./privacy.html#contact" data-i18n="footer.contact">Contact</a>
+          <a class="nav-link" href="./acknowledgements.html" data-i18n="footer.ack">Acknowledgements</a>
         </div>
       </div>
     </footer>
 
+    <script src="./assets/i18n.js"></script>
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
     </script>
