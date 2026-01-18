@@ -22,6 +22,8 @@ git check-ignore -v data/
 - Don’t include screenshots that may contain emails, tokens, IPs, or passwords.
 - Keep operational notes (IPs, usernames) in `docs/server-info.private.md` (ignored).
 
+Branding guardrail: the story page must be titled **“The Chew Story”** everywhere (HTML, nav links, translations). Never revert to “The True Story”.
+
 ## 3) Scan the repo for secrets before commit
 
 ```powershell

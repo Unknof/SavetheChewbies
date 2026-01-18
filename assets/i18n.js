@@ -5,11 +5,11 @@
     en: {
       'site.name': 'Save The Chewbies',
       'common.skipToContent': 'Skip to content',
-      'common.langToggle': '中文',
-      'common.langToggleLabel': 'Switch language',
+      'common.langToggle': 'Switch to 中文',
+      'common.langToggleLabel': 'Switch language (EN/中文)',
 
       'nav.home': 'Home',
-      'nav.story': 'The True Story',
+      'nav.story': 'The Chew Story',
       'nav.gallery': 'Gallery',
       'nav.donate': 'Donate',
       'nav.privacy': 'Privacy',
@@ -192,10 +192,10 @@
       'gallery.links.contact': 'Contact →',
       'gallery.links.ack': 'Acknowledgements →',
 
-      'story.meta.title': 'The True Story • Save The Chewbies',
+      'story.meta.title': 'The Chew Story • Save The Chewbies',
       'story.meta.description': 'The backstory of Baby Chew and the Chewbies.',
-      'story.brandTagline': 'The True Story',
-      'story.title': 'The True Story',
+      'story.brandTagline': 'The Chew Story',
+      'story.title': 'The Chew Story',
       'story.lead': 'How Baby Chew and the Chewbies came to be.',
       'story.h2.1': 'Chew what?',
       'story.p.1':
@@ -331,11 +331,11 @@
     zh: {
       'site.name': '拯救秋伊小跟班',
       'common.skipToContent': '跳到正文',
-      'common.langToggle': 'English',
-      'common.langToggleLabel': '切换语言',
+      'common.langToggle': '切换到 English',
+      'common.langToggleLabel': '切换语言 (中文/EN)',
 
       'nav.home': '主页',
-      'nav.story': '真实故事',
+      'nav.story': 'Chew 的故事',
       'nav.gallery': '图集',
       'nav.donate': '捐款',
       'nav.privacy': '隐私',
@@ -497,10 +497,10 @@
       'gallery.links.contact': '联系 →',
       'gallery.links.ack': '致谢 →',
 
-      'story.meta.title': '真实故事 • 拯救秋伊小跟班',
+      'story.meta.title': 'Chew 的故事 • 拯救秋伊小跟班',
       'story.meta.description': '小秋伊与秋伊小跟班的来历。',
-      'story.brandTagline': '真实故事',
-      'story.title': '真实故事',
+      'story.brandTagline': 'Chew 的故事',
+      'story.title': 'Chew 的故事',
       'story.lead': '小秋伊与秋伊小跟班是怎么诞生的。',
       'story.h2.1': '秋伊是什么？',
       'story.p.1':
