@@ -1,3 +1,5 @@
+TL:DR: Kerrigan Survival’s Chew began as a thank-you pet and evolved into a full class spawning chewbies; I brought him back as Baby Chew for a CN tournament, pledged donations to Save the Children per summon, and built this site so we can save chewbies all around the world.
+
 Chew and his chewbies are part of a StarCraft II Arcade game, developed by a bunch of passionate gamers. The name of the arcade map is Kerrigan Survival, which was originally released sometime in 201X (TBD). Since then, people from all over the world have spent countless hours improving it, slowly turning it into the game it is today.
 
 StarCraft II is a real-time strategy game by Blizzard Entertainment, famous for its competitive multiplayer and its story-driven campaigns.
