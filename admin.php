@@ -157,8 +157,12 @@ header('Cache-Control: no-store');
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Admin • Save The Chewbies</title>
-    <meta name="description" content="Admin dashboard for webhook relay and verification status." />
+    <title data-i18n="admin.title">Admin • Save The Chewbies</title>
+    <meta
+      name="description"
+      content="Admin dashboard for webhook relay and verification status."
+      data-i18n-attr-content="admin.meta.description"
+    />
     <link rel="icon" href="./assets/icon.png" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/icon.png" />
     <link rel="stylesheet" href="./assets/styles.css" />
@@ -169,21 +173,21 @@ header('Cache-Control: no-store');
         <div class="brand">
           <div class="brand-mark" aria-hidden="true"><img src="./assets/icon.png" alt="" width="42" height="42" /></div>
           <div class="brand-text">
-            <div class="brand-name">Save The Chewbies</div>
-            <div class="brand-tagline">Admin</div>
+            <div class="brand-name" data-i18n="site.name">Save The Chewbies</div>
+            <div class="brand-tagline" data-i18n="admin.brandTagline">Admin</div>
           </div>
         </div>
         <nav class="nav" aria-label="Primary">
-          <a class="nav-link" href="./index.html">Home</a>
-          <a class="nav-link" href="./donate.html">Donate</a>
+          <a class="nav-link" href="./index.html" data-i18n="nav.home">Home</a>
+          <a class="nav-link" href="./donate.html" data-i18n="nav.donate">Donate</a>
         </nav>
       </div>
     </header>
 
     <main class="container">
       <section class="page-header">
-        <h1>Webhook admin</h1>
-        <p class="lead">Shows relay statuses and the most recent webhook events seen by this server.</p>
+        <h1 data-i18n="admin.header.title">Webhook admin</h1>
+        <p class="lead"><span data-i18n="admin.header.lead">Shows relay statuses and the most recent webhook events seen by this server.</span></p>
       </section>
 
       <section class="card">
@@ -262,5 +266,6 @@ header('Cache-Control: no-store');
         </p>
       </section>
     </main>
+    <script src="./assets/i18n.js"></script>
   </body>
 </html>
