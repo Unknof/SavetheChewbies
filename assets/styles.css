@@ -457,4 +457,53 @@ dd {
   .grid {
     grid-template-columns: 1fr;
   }
+
+  .nav {
+    gap: 6px;
+  }
+
+  .nav-link {
+    padding: 8px 10px;
+    font-size: 0.95rem;
+  }
+
+  .button {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    min-width: auto;
+  }
+
+  .actions {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav {
+    gap: 4px;
+    min-width: auto;
+  }
+
+  .nav-link {
+    padding: 8px 8px;
+    font-size: 0.9rem;
+  }
+
+  .button {
+    padding: 10px 10px;
+    font-size: 0.9rem;
+  }
+
+  .brand {
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .brand-name {
+    font-size: 0.95rem;
+  }
+
+  .brand-tagline {
+    display: none;
+  }
 }
