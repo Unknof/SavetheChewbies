@@ -17,3 +17,6 @@ docs/server-info.private.md
 
 # Runtime data (webhook logs, relay status, token cache)
 data/
+
+# unused songs. might use for KS background music later
+unused_songs/*
