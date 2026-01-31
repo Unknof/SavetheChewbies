@@ -35,17 +35,24 @@ sudo chown root:root /etc/ks-kofi.env
 sudo chmod 600 /etc/ks-kofi.env
 ```
 
-## 2) Run the service (systemd + waitress)
+## 2) Install Python + run the service (systemd + waitress)
 
 `KS_Ko-Fi` is a Flask WSGI app with entrypoint `wsgi:app`.
+
+Install Python (Debian/Ubuntu):
+
+```bash
+sudo apt update
+sudo apt install -y python3 python3-venv python3-pip
+python3 --version
+```
 
 Install deps (example path; adjust to where you deploy the folder):
 
 ```bash
 cd /opt/savethechewbies/KS_Ko-Fi
-python3.11 -m venv .venv
-./.venv/bin/pip install -r requirements.txt
-./.venv/bin/pip install waitress
+python3 -m venv .venv
+./.venv/bin/python -m pip install -r requirements.txt
 ```
 
 Create a systemd unit like `/etc/systemd/system/ks-kofi.service`:

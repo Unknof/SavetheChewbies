@@ -205,17 +205,30 @@ def create_app(
         if request.content_length is not None and request.content_length > cfg.max_request_bytes:
             return jsonify({"ok": False, "error": "Request too large"}), 413
 
+        data: dict | None = None
+
+        # Ko-fi sends application/x-www-form-urlencoded with a `data=<json string>` field.
         raw = request.form.get("data")
-        if not raw:
-            return jsonify({"ok": False, "error": "Missing form field: data"}), 400
+        if raw:
+            if len(raw.encode("utf-8")) > cfg.max_request_bytes:
+                return jsonify({"ok": False, "error": "Request too large"}), 413
 
-        if len(raw.encode("utf-8")) > cfg.max_request_bytes:
-            return jsonify({"ok": False, "error": "Request too large"}), 413
+            try:
+                parsed = json.loads(raw)
+            except json.JSONDecodeError:
+                return jsonify({"ok": False, "error": "Invalid JSON in data"}), 400
 
-        try:
-            data = json.loads(raw)
-        except json.JSONDecodeError:
-            return jsonify({"ok": False, "error": "Invalid JSON in data"}), 400
+            if not isinstance(parsed, dict):
+                return jsonify({"ok": False, "error": "Invalid JSON payload"}), 400
+            data = parsed
+        else:
+            # Allow JSON bodies for debugging (not used by Ko-fi itself).
+            parsed = request.get_json(silent=True)
+            if parsed is None:
+                return jsonify({"ok": False, "error": "Missing payload"}), 400
+            if not isinstance(parsed, dict):
+                return jsonify({"ok": False, "error": "Invalid JSON payload"}), 400
+            data = parsed
 
         if cfg.kofi_verification_token and data.get("verification_token") != cfg.kofi_verification_token:
             return jsonify({"ok": False, "error": "Unauthorized"}), 401
