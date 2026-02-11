@@ -109,9 +109,14 @@ sudo git clone https://github.com/Unknof/SavetheChewbies /root/deploy_tmp/Saveth
 sudo rsync -av --delete \
    --exclude 'data/' \
    --exclude 'config.php' \
+   --exclude '.venv/' \
    --exclude '.git/' \
    /root/deploy_tmp/SavetheChewbies/ \
    /var/www/savethechew/
+
+Important note about Python services (Ko-fi bridge):
+- If you create a Python virtual environment inside the deployed folder (example: `KS_Ko-Fi/.venv/`), `rsync --delete` will delete it unless you exclude it.
+- Recommended: either exclude `.venv/` as above, or keep the venv outside the deploy tree (example: `/opt/ks-kofi-venv/`) and point your systemd `ExecStart` at it.
 ```
 
 Option B: clone directly into the Caddy root (only works if the folder is empty or you move `data/` out first):

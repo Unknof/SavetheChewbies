@@ -10,6 +10,10 @@ Goal: expose **only** a webhook endpoint publicly, while the Python service itse
 - A small Python service listens on `127.0.0.1:8787`
 - Caddy reverse-proxies a path (example: `/kofi/*`) to the Python service
 
+Deploy note:
+- If you deploy the site with `rsync --delete`, any virtualenv created inside the deployed tree (example: `KS_Ko-Fi/.venv/`) will be deleted unless you exclude it.
+- Safest options: exclude `.venv/` in rsync, or keep the venv outside the deploy tree.
+
 Public endpoint Ko-fi calls:
 
 - `https://savethechew.biz/kofi/webhooks/kofi`
