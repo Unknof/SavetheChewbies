@@ -94,6 +94,30 @@ def _post_discord(webhook_url: str, content: str) -> None:
     resp.raise_for_status()
 
 
+def _format_discord_afdian(order: dict, fund: Fund) -> str:
+    amount = order.get("total_amount", "?")
+    # Afdian amounts are already strings like "30.00"; append CNY if no currency field present
+    plan_title = order.get("plan_title") or order.get("title") or "Sponsor"
+    remark = order.get("remark")
+    # Afdian doesn't expose the donor's display name in webhooks; use user_id as fallback
+    donor = order.get("user_id", "Someone")
+
+    fund_label = {
+        "team": "TEAM FUND",
+        "prize": "PRIZE POOL",
+        "unknown": "UNCLASSIFIED",
+    }[fund]
+
+    parts = [
+        f"Afdian {plan_title} → {fund_label}",
+        f"From: {donor}",
+        f"Amount: ¥{amount}",
+    ]
+    if remark:
+        parts.append(f"Message: {remark}")
+    return "\n".join(parts)
+
+
 def load_config() -> Config:
     load_dotenv(override=False)
 
@@ -262,6 +286,62 @@ def create_app(
                 seen_message_ids.clear()
 
         return jsonify({"ok": True}), 200
+
+    # ------------------------------------------------------------------ #
+    # Afdian webhook                                                       #
+    # ------------------------------------------------------------------ #
+
+    seen_afdian_order_ids: set[str] = set()
+
+    @app.post("/webhooks/afdian")
+    def afdian_webhook():
+        if request.content_length is not None and request.content_length > cfg.max_request_bytes:
+            return jsonify({"ec": 500, "em": "Request too large"}), 413
+
+        payload = request.get_json(silent=True)
+        if payload is None or not isinstance(payload, dict):
+            return jsonify({"ec": 500, "em": "Invalid JSON payload"}), 400
+
+        data = payload.get("data")
+        if not isinstance(data, dict):
+            return jsonify({"ec": 500, "em": "Missing data field"}), 400
+
+        order = data.get("order")
+        if not isinstance(order, dict):
+            return jsonify({"ec": 500, "em": "Missing order field"}), 400
+
+        # Only process successful orders (status 2 = paid)
+        if order.get("status") not in (2, "2"):
+            return jsonify({"ec": 200, "em": ""}), 200
+
+        order_id = order.get("out_trade_no")
+        if isinstance(order_id, str) and order_id in seen_afdian_order_ids:
+            return jsonify({"ec": 200, "em": ""}), 200
+
+        fund = _detect_fund(order.get("remark"), cfg.team_tag, cfg.prize_tag)
+        content = _format_discord_afdian(order, fund)
+
+        app.logger.info(
+            "Afdian webhook received: order_id=%s fund=%s user_id=%s amount=%s",
+            order_id,
+            fund,
+            order.get("user_id"),
+            order.get("total_amount"),
+        )
+
+        try:
+            _send(content)
+        except Exception:
+            app.logger.exception("Discord forwarding failed (Afdian)")
+            return jsonify({"ec": 500, "em": "Discord forwarding failed"}), 502
+
+        if isinstance(order_id, str):
+            seen_afdian_order_ids.add(order_id)
+            if len(seen_afdian_order_ids) > max_seen:
+                seen_afdian_order_ids.clear()
+
+        # Afdian requires this exact response to consider delivery successful
+        return jsonify({"ec": 200, "em": ""}), 200
 
     @app.get("/health")
     def health():
